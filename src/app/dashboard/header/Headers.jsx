@@ -19,7 +19,7 @@ import Cookies from 'js-cookie';
 // import { cookies } from 'next/headers';
 // import { MdOutlineSettings } from "react-icons/md";
 
-export default function headers() {
+export default function Headers() {
   const nav = useRouter()
   const [proo,setproo]=useState(false)
   const [profile,setprofile]=useState([])
@@ -70,7 +70,7 @@ export default function headers() {
             
            <div>
              <div className='imgg-r'>
-            <img src={`${process.env.NEXT_PUBLIC_SERVER}/keshaveBlog-files/admin/${profile.map((v)=>v.profile)}`} onClick={handlepro} className='w-100' />
+            <img src={`${process.env.NEXT_PUBLIC_SERVER}/keshaveBlog-files/admin/${profile.map((v)=>v.profile)}`} onClick={handlepro} className='w-100' alt='profile' />
           </div>
           <div className={`border-start pro ${proo==true?'d-block':'d-none'} border-end border-bottom my-4 rounded-top`}>
             <div className='bgg fw-bold  py-2 px-3'>

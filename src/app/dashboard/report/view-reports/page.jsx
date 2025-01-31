@@ -244,7 +244,7 @@ const page = () => {
                                                 <td> {v.username} </td>
                                                 <td> {v.reportt} </td>
                                                 <td>
-                                                    <img src={`${pat}${v.thumbnail}`} width={100} height={100} alt="" />
+                                                    <img src={`${pat}${v.thumbnail}`} width={100} height={100} alt="thumbnail" />
                                                 </td>
                                                 <td style={{
                                                     paddingTop: '20px',

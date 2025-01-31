@@ -68,7 +68,7 @@ const page = () => {
                                 <div className='d-flex  align-items-center gap-3'>
 
                                     <div className='border-0 rounded-circle'>
-                                        <img src={`http://localhost:5200/keshaveBlog-files/users/${v.userr.profile}`} width={100} height={100} className='border-0 rounded-circle' alt="" />
+                                        <img src={`${process.env.NEXT_PUBLIC_SERVER}/keshaveBlog-files/users/${v.userr.profile}`} width={100} height={100} className='border-0 rounded-circle' alt="profile" />
                                     </div>
                                     <div>
                                         <h4>{v.userr.username}</h4>
@@ -84,7 +84,7 @@ const page = () => {
                             >
                                 <div className='row text-white'>
                                     <div className='col-12 col-lg-4 p-2 rounded'>
-                                        <img src={`${paath}${v.thumbnail}`} width='100%' height={400} className='rounded' alt="" />
+                                        <img src={`${paath}${v.thumbnail}`} width='100%' height={400} className='rounded' alt="thumbnail" />
                                     </div>
                                     <div className='col-12 col-lg-8 p-2 text-center lh-lg'>
                                         <h4 className='my-2 fw-bold'>
@@ -514,7 +514,7 @@ function MyVerticallyCenteredModal(props) {
             <Modal.Body>
                 <div className='row' >
                     <div className='col-6'>
-                        <img src={`${props.p}${props.v.thumbnail}`} width='100%' height={350} alt="" />
+                        <img src={`${props.p}${props.v.thumbnail}`} width='100%' height={350} alt="thumbnail" />
                     </div>
                     <div className='col-6' >
                         <div className='scrollC'>
@@ -522,7 +522,7 @@ function MyVerticallyCenteredModal(props) {
                                 comment.map((item, index) => (
                                     <div className='d-flex fs-4 gap-2 my-2 p-2'>
                                         <div className='rounded-circle'>
-                                            <img src={`http://localhost:5200/keshaveBlog-files/users/${item.userrs.profile}`} width={50} height={50} className='rounded-circle' />
+                                            <img src={`${process.env.NEXT_PUBLIC_SERVER}/keshaveBlog-files/users/${item.userrs.profile}`} width={50} height={50} className='rounded-circle' alt='profile' />
                                         </div>
                                         <div>
                                             {item.comments}

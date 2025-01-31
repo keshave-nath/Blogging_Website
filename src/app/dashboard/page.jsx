@@ -22,7 +22,7 @@ export default function page() {
           </h1>
           <div className='d-flex justify-content-center mt-5' >
             <div className='bg-white w-25 ps-5'>
-            <img class="" src='https://i.pinimg.com/originals/bc/9e/4a/bc9e4a15c3b226b8914e57e543defe9e.png' width='200px' height='200px' />
+            <img class="" src='https://i.pinimg.com/originals/bc/9e/4a/bc9e4a15c3b226b8914e57e543defe9e.png' width='200px' height='200px' alt='Image' />
             </div>
             
           </div>

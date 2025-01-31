@@ -166,7 +166,7 @@ const page = () => {
                                                 {/* <td><input type='checkbox' value={item._id} checked={viewId.includes(item._id)} onClick={handelcheck} /></td> */}
                                                 <td>{index + 1}</td>
                                                 <td>
-                                                    <img src={`${userpatdata}${item.profile}`} width={100} height={100} alt="" />
+                                                    <img src={`${userpatdata}${item.profile}`} width={100} height={100} alt="User" />
                                                 </td>
                                                 <td>{item.username}</td>
                                                 <td>{item.email}</td>
