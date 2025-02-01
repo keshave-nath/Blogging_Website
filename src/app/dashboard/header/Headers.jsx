@@ -42,7 +42,7 @@ export default function Headers() {
 
   useEffect(() => {
     checkedifloggedin();
-  }, [checkedifloggedin]) // Added dependency
+  }, []) // Added dependency
 
   return (
     <div className='bg-dark w-100 text-white '>

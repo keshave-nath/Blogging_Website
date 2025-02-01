@@ -81,8 +81,8 @@ const Page = () => {
             // }}
             >
 
-                <div className='row'>
-                    <div className='col-3 d-flex justify-content-center align-items-center'>
+                <div className='row m-2'>
+                    <div className='col-12 col-md-3 d-flex justify-content-center align-items-center'>
                         <div className='rounded-circle '
                             style={{
                                 width: '300px',

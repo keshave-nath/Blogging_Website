@@ -96,7 +96,7 @@ const Header = () => {
     checkedifloggedin();
   }, []) // Added dependency
 
-  console.log(user)
+  // console.log(user)
 
   return (
     <>
@@ -138,6 +138,51 @@ const Header = () => {
               </NavDropdown>
             </Nav>
           </Navbar.Collapse>
+
+          <Navbar.Offcanvas id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel" placement="start" className="bg-dark text-white d-lg-none">
+          <Offcanvas.Header closeButton >
+            <Offcanvas.Title id="offcanvasNavbarLabel">Menu</Offcanvas.Title>
+          </Offcanvas.Header>
+          <Offcanvas.Body>
+            <Nav className="flex-column">
+              <Nav.Link href="/website/Index" className='d-flex gap-2 pt-4'>
+                <FaHome className='text-white fs-5' /><p>Home</p>
+              </Nav.Link>
+              <Nav.Link href="/website/Addblog" className='d-flex gap-2 pt-4'>
+                <CgAddR className='text-white fs-5' /><p>Add</p>
+              </Nav.Link>
+              <NavDropdown title="More" className='d-flex gap-2 pt-3' id="navbarScrollingDropdown">
+                <NavDropdown.Item href="/website/Profile" className='d-flex gap-2 text-white'>
+                  <IoPersonSharp className='text-white fs-5' /><p>Profile</p>
+                </NavDropdown.Item>
+                <NavDropdown.Item href="/website/EditProfile" className='d-flex gap-2 text-white'>
+                  <FaRegEdit className='fs-5 text-white' /><p>Edit</p>
+                </NavDropdown.Item>
+                <NavDropdown.Item href="/website/TermsAndConditions" className='d-flex gap-2 text-white'>
+                  <GiNotebook className='fs-5 text-white' /><p>Terms & Conditions</p>
+                </NavDropdown.Item>
+                <NavDropdown.Item href="/website/Forgetpassword" className='d-flex gap-2 text-white'>
+                  <RiLockPasswordFill className='fs-5 text-white' /><p>Forget Password</p>
+                </NavDropdown.Item>
+                <NavDropdown.Item href="#" className='d-flex gap-2 text-white' onClick={HandelAccountDisable}>
+                  <RiInformation2Line className='fs-4 text-white' /><p>Account Temporarily Disable</p>
+                </NavDropdown.Item>
+                <NavDropdown.Item href="#" className='d-flex gap-2 text-white' onClick={Handelaccountdelete}>
+                  <MdDeleteForever className='fs-4 text-white' /><p>Account Permanently Delete</p>
+                </NavDropdown.Item>
+                <NavDropdown.Divider />
+                <NavDropdown.Item href="#" className='d-flex gap-2 text-white' onClick={handlelogout}>
+                  <IoIosLogOut className='text-white fs-3' /><p>Log-out</p>
+                </NavDropdown.Item>
+              </NavDropdown>
+            </Nav>
+            {/* <Form className="d-flex mt-3">
+              <Form.Control type="search" placeholder="Search" className="me-2" aria-label="Search" />
+              <Button variant="outline-success">Search</Button>
+            </Form> */}
+          </Offcanvas.Body>
+        </Navbar.Offcanvas>
+
         </Container>
       </Navbar>
     </>

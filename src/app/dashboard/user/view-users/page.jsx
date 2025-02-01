@@ -1,6 +1,6 @@
 'use client'
 import React, { useEffect, useState } from 'react'
-import Headers from '../../header/Headers';
+// import Headers from '../../header/Headers';
 import Link from 'next/link';
 import { Container, Table } from 'react-bootstrap';
 import { SlNote } from "react-icons/sl";
@@ -8,6 +8,7 @@ import { MdDelete } from "react-icons/md";
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import Image from 'next/image'; // Importing Image component
+import Headers from '../../header/Headers.jsx';
 
 const Page = () => { // Renamed from page to Page
 
