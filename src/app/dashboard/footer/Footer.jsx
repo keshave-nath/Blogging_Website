@@ -1,7 +1,7 @@
 import React from 'react'
 import { Container } from 'react-bootstrap'
 
-const page = () => {
+const Page = () => {
   return (
     <Container>
       <div className='d-flex foot justify-content-between w-100'>
@@ -16,4 +16,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page
