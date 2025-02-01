@@ -1,6 +1,6 @@
 'use client'
 import React, { useEffect, useState } from 'react'
-import Header from '../component/Header'
+import Header from '../../component/Header'
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import Swal from 'sweetalert2';
@@ -84,8 +84,8 @@ const handelOut = ()=>{
  
    };
 
-   useEffect(()=>{handelUser();},[])
-// console.log(UserData)
+   useEffect(()=>{handelUser();  },[])
+console.log(UserData)
    return (
     <>
     <Header/>
@@ -107,18 +107,18 @@ const handelOut = ()=>{
                  IMAGE : 
              </label>
              <div className='w-50 text-white my-3 '>
-               <img src={imgPres.profile} alt="Profile " name='profile' className='p-1' width='100%' />
+               <img src={imgPres.profile || `${process.env.NEXT_PUBLIC_SERVER}/keshaveBlog-files/users/${UserData.profile}`}  alt="Profile " name='profile' className='p-1' width='100%' />
              </div>
              <input type="file" name='profile' onChange={handleFileSelect} placeholder='Enter Your Title' className='d-block w-100 bg-white text-black rounded border-0 my-3 p-1' />
              <label htmlFor="" className='fw-bold fs-4 text-white'>
                  Name : 
              </label>
-             <input type="text" placeholder='Enter Your Name' name='name' className='d-block w-100 rounded border-0 my-3 p-1' /> 
+             <input type="text" placeholder='Enter Your Name' name='name' value={UserData.name} onChange={(e) => { SetUserData({ ...UserData, name: e.target.value }) }} className='d-block w-100 rounded border-0 my-3 p-1' /> 
  
              <label htmlFor="" className='fw-bold fs-4 text-white'>
                  Username : 
              </label>
-             <input type="text" placeholder='Enter Your Username' name='username' className='d-block w-100 rounded border-0 my-3 p-1' /> 
+             <input type="text" placeholder='Enter Your Username'  name='username' value={UserData.username} onChange={(e) => { SetUserData({ ...UserData, username: e.target.value }) }} className='d-block w-100 rounded border-0 my-3 p-1' /> 
              {/* <label htmlFor="" className='fw-bold fs-4 text-white'>
                  Bio : 
              </label>
@@ -127,12 +127,12 @@ const handelOut = ()=>{
              <label htmlFor="" className='fw-bold fs-4 text-white'>
                  Blogging Type : 
              </label>
-             <input type="text" name='type' placeholder='Enter Your Location' className='d-block w-100 rounded border-0 my-3 p-1' /> 
+             <input type="text" name='type' value={UserData.type} onChange={(e) => { SetUserData({ ...UserData, type: e.target.value }) }} placeholder='Enter Your Location' className='d-block w-100 rounded border-0 my-3 p-1' /> 
  
              <label htmlFor="" className='fw-bold fs-4 text-white'>
              Bio : 
              </label>
-             <textarea name='bio' placeholder='Enter Your Trip Experience' maxLength={620} id="" className='d-block w-100 rounded border-0 my-3 p-1' ></textarea>  
+             <textarea name='bio' value={UserData.bio} onChange={(e) => { SetUserData({ ...UserData, bio: e.target.value }) }} placeholder='Enter Your Trip Experience' maxLength={620} id="" className='d-block w-100 rounded border-0 my-3 p-1' ></textarea>  
  
              <button className='text-white butt border-0 w-100 p-1 rounded fw-bold fs-3 mt-5'>  
                Edit your Profile

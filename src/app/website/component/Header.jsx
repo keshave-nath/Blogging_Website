@@ -169,7 +169,7 @@ const Header = () => {
               <NavDropdown.Item href="/website/Profile" className='d-flex gap-2'>
                 <IoPersonSharp className='text-white fs-5' /><p>Profile</p>
               </NavDropdown.Item>
-              <NavDropdown.Item href="/website/EditProfile" className='d-flex gap-2'>
+              <NavDropdown.Item href={`/website/EditProfile/${user._id}`} className='d-flex gap-2'>
                 <FaRegEdit className='fs-5 text-white' /><p>Edit Profile</p>
               </NavDropdown.Item>
               <NavDropdown.Item href="/website/TermsAndConditions" className='d-flex gap-2'>

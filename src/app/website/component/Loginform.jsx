@@ -114,6 +114,7 @@ const Loginform = () => {
     };
 
     const handelLogin = async (e) => {
+        // console.log(process.env.NEXT_PUBLIC_SERVER)
         e.preventDefault();
         const datas = {
             "email": e.target.email.value,
