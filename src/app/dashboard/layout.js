@@ -28,7 +28,7 @@ export default function layout({ children }) {
             <div className='d-flex'>
                 <div className='d_left'>
                     <div className='text-center p-3 border-bottom'>
-                        <h2>Keshave Nath</h2>
+                        <h2>Share Your Blog</h2>
                     </div>
                     <div className='scroll'>
                         <div className=''>
