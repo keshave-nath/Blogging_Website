@@ -82,7 +82,7 @@ const Page = () => {
             >
 
                 <div className='row m-2'>
-                    <div className='col-12 col-md-3 d-flex justify-content-center align-items-center'>
+                    <div className='col-12 col-lg-3 d-flex justify-content-center align-items-center'>
                         <div className='rounded-circle '
                             style={{
                                 width: '300px',
@@ -92,7 +92,7 @@ const Page = () => {
                             <img src={`${process.env.NEXT_PUBLIC_SERVER}/keshaveBlog-files/users/${prof.profile}`} className=' rounded-circle profile ' width='100%' height='100%' alt="profile" />
                         </div>
                     </div>
-                    <div className='col-9 lh-lg'>
+                    <div className='col-12 col-lg-9 lh-lg'>
                         <div className='my-3 d-flex justify-content-between'>
                             <h3>
                                 {prof.username}
@@ -131,7 +131,7 @@ const Page = () => {
 
                     {
                         fetchpost.map((v, i) => (
-                            <div className='col-4 shadd position-relative rounded ' key={v._id} >
+                            <div className='col-12 col-lg-4 shadd position-relative rounded ' key={v._id} >
                                 <Link href={`/website/Singlepost/${v._id}`}>
                                     <div className='row p-2'>
                                         <div className='col-12'>
