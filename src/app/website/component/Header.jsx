@@ -94,7 +94,9 @@ const Header = () => {
 
   useEffect(() => {
     checkedifloggedin();
-  }, [checkedifloggedin]) // Added dependency
+  }, []) // Added dependency
+
+  console.log(user)
 
   return (
     <>

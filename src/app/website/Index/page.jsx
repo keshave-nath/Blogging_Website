@@ -53,7 +53,7 @@ const Page = () => {
 
     useEffect(() => { handelPosts() }, [])
 
-    // console.log(Posts)
+    console.log(Posts)
 
     return (
         <>

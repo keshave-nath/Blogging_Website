@@ -43,7 +43,7 @@ const Page = () => { // Renamed from page to Page
                 <div className='row'>
                     <div className='col-3 d-flex justify-content-center align-items-center'>
                         <div className='rounded-circle' style={{ width: '300px', height: '300px' }}>
-                            <Image src={`${process.env.NEXT_PUBLIC_SERVER}/keshaveBlog-files/users/${prof.profile}`} className='rounded-circle profile' width={300} height={300} alt="profile" /> {/* Updated to use Image component */}
+                            <img src={`${process.env.NEXT_PUBLIC_SERVER}/keshaveBlog-files/users/${prof.profile}`} className='rounded-circle profile' width='100%' height='100%' alt="profile" /> {/* Updated to use Image component */}
                         </div>
                     </div>
                     <div className='col-9 lh-lg'>
@@ -70,7 +70,7 @@ const Page = () => { // Renamed from page to Page
                                 <Link href={`/website/Singlepost/${v._id}`}>
                                     <div className='row p-2 '>
                                         <div className='col-12 rounded'>
-                                            <Image src={`${pat}${v.thumbnail}`} className='rounded' width={100} height={350} alt="thumbnail" /> {/* Updated to use Image component */}
+                                            <img src={`${pat}${v.thumbnail}`} className='rounded' width='100%' height={350} alt="thumbnail" /> {/* Updated to use Image component */}
                                         </div>
                                     </div>
                                 </Link>
