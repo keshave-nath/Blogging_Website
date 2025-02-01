@@ -150,7 +150,7 @@ const Page = () => { // Renamed from page to Page
                                             <tr key={item._id}> {/* Added key prop */}
                                                 <td>{index + 1}</td>
                                                 <td>
-                                                    <Image src={`${userpatdata}${item.profile}`} width={100} height={100} alt="User" /> {/* Updated to use Image component */}
+                                                    <img src={`${userpatdata}${item.profile}`} width={100} height={100} alt="User" /> {/* Updated to use Image component */}
                                                 </td>
                                                 <td>{item.username}</td>
                                                 <td>{item.email}</td>
