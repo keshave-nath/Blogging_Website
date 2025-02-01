@@ -3,27 +3,25 @@ import React, { useEffect, useState } from 'react'
 import Headers from '../../header/Headers';
 import Link from 'next/link';
 import { Container, Table } from 'react-bootstrap';
-// import { IconContext } from 'react-icons';
 import { SlNote } from "react-icons/sl";
 import { MdDelete } from "react-icons/md";
 import axios from 'axios';
 import Swal from 'sweetalert2';
 
-const page = () => {
+const Page = () => { // Renamed from page to Page
 
-    const [fetchData,setfetchData] = useState([]);
+    const [fetchData, setfetchData] = useState([]);
     const [viewId, setViewId] = useState([]);
     const [ifChecked, SetIfChecked] = useState(false);
 
-    const fetchTerms = async()=>{
-        try{
-           const response = await axios.get(`${process.env.NEXT_PUBLIC_SERVER}/api/admin-panel/terms-conditions/view-terms`)
-           if(response.status==200){
-            setfetchData(response.data.data);
-           }
-        //    console.log(response.data.data); 
+    const fetchTerms = async () => {
+        try {
+            const response = await axios.get(`${process.env.NEXT_PUBLIC_SERVER}/api/admin-panel/terms-conditions/view-terms`)
+            if (response.status == 200) {
+                setfetchData(response.data.data);
+            }
         }
-        catch(error){
+        catch (error) {
             console.log(error);
         }
     }
@@ -32,16 +30,11 @@ const page = () => {
         try {
             const response = await axios.delete(`${process.env.NEXT_PUBLIC_SERVER}/api/admin-panel/terms-conditions/delete-terms/${e}`)
             if (response.status == 200) {
-
                 alert("Deleted")
-
                 const indexNo = fetchData.findIndex((v) => v._id === e);
                 const newData = [...fetchData]
                 newData.splice(indexNo, 1);
-
                 setfetchData(newData);
-
-
             }
         }
         catch (error) {
@@ -52,39 +45,27 @@ const page = () => {
     const handelStatus = async (e) => {
         let newvalues = (e.target.textContent == "Active") ? false : true;
         try {
-            // console.log(e.target.textContent)
-            
-           
-                await Swal.fire({
-                    title: "Do you want to Update the status?",
-                    showDenyButton: true,
-                    showCancelButton: true,
-                    confirmButtonText: "Save",
-                    denyButtonText: `Don't save`
-                }).then((result) => {
-                    
-                    /* Read more about isConfirmed, isDenied below */
-                    if(result.isConfirmed){
-                        const response =  axios.post(`${process.env.NEXT_PUBLIC_SERVER}/api/admin-panel/terms-conditions/update-status-terms/${e.target.value}`, { newvalues })
-                        if (response.status == 200){
-                        // alert("Status Updated")
-                        // console.log("result")
+            await Swal.fire({
+                title: "Do you want to Update the status?",
+                showDenyButton: true,
+                showCancelButton: true,
+                confirmButtonText: "Save",
+                denyButtonText: `Don't save`
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    const response = axios.post(`${process.env.NEXT_PUBLIC_SERVER}/api/admin-panel/terms-conditions/update-status-terms/${e.target.value}`, { newvalues })
+                    if (response.status == 200) {
                         let indexNo = fetchData.findIndex((v) => v._id === e.target.value)
                         const newData = [...fetchData]
                         newData[indexNo].status = newvalues;
-                        // console.log(newData,indexNo)
                         setfetchData(newData);
                         Swal.fire("Saved!", "", "success");
-                    
-                        }
-                        // nav.push('./view-terms-conditions');
                     }
-                    else if (result.isDenied) {
-                        Swal.fire("Changes are not saved", "", "info");
-                    }
-                })
-            
-            
+                }
+                else if (result.isDenied) {
+                    Swal.fire("Changes are not saved", "", "info");
+                }
+            })
         }
         catch (error) {
             console.log(error);
@@ -118,7 +99,6 @@ const page = () => {
     }
 
     const handelmultidelete = async () => {
-
         await Swal.fire({
             title: "Are you sure?",
             text: "You won't be able to revert this!",
@@ -138,14 +118,12 @@ const page = () => {
                         })
                     )
                     const response = axios.post(`${process.env.NEXT_PUBLIC_SERVER}/api/admin-panel/terms-conditions/multi-delete-terms`, { ids: viewId }).then((resultt) => {
-                        // console.log(resultt)
                         if (resultt.status == 200) return (
                             Swal.fire({
                                 title: "Success !!",
                                 text: "Data Deleted Successfully !!",
                                 icon: "success"
                             }).then((ress) => (fetchTerms()))
-
                         )
                         if (resultt.status !== 200) return (
                             Swal.fire({
@@ -155,10 +133,6 @@ const page = () => {
                             })
                         )
                     })
-
-
-
-
                 }
                 catch (error) {
                     console.log(error);
@@ -170,19 +144,18 @@ const page = () => {
                 }
             }
         });
-
-
     }
 
-    useEffect(()=>{fetchTerms();
+    useEffect(() => {
+        fetchTerms();
         SetIfChecked(viewId.length === fetchData.length && fetchData.length !== 0)
-    },[viewId,fetchData])
+    }, [viewId, fetchData])
 
-  return (
-    <div>
-        <Headers />
+    return (
         <div>
-        <div className='p-2 border-top border-bottom border-end'>
+            <Headers />
+            <div>
+                <div className='p-2 border-top border-bottom border-end'>
                     <ul className=' list-unstyled d-flex gap-2 mx-3'>
                         <Link className='text-decoration-none' href='/dashboard' ><li className='text-info'>Home</li></Link>
                         <li>/</li>
@@ -198,12 +171,10 @@ const page = () => {
                             <Table className='text-center ' striped bordered hover variant="dark" >
                                 <thead>
                                     <tr>
-                                    <th style={{
-                                            display: 'flex',
-                                            alignItems: 'center'
-                                        }}><button onClick={handelmultidelete} className='my-2 ms-2 p-2 d-block rounded border-0 text-white bg-danger'>Delete</button> <input type='checkbox' className='ms-3' style={{
-                                            height: '14px'
-                                        }} checked={ifChecked} onClick={handelSelectAll} /></th>
+                                        <th style={{ display: 'flex', alignItems: 'center' }}>
+                                            <button onClick={handelmultidelete} className='my-2 ms-2 p-2 d-block rounded border-0 text-white bg-danger'>Delete</button>
+                                            <input type='checkbox' className='ms-3' style={{ height: '14px' }} checked={ifChecked} onClick={handelSelectAll} />
+                                        </th>
                                         <th>S.No</th>
                                         <th>T&C Title</th>
                                         <th>T&C Details</th>
@@ -212,59 +183,41 @@ const page = () => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                {
-                                    fetchData.map((v,i)=>(
-                                        <tr >
-                                            <td><input  type='checkbox' value={v._id} checked={viewId.includes(v._id)} onClick={handelcheck} /></td>
-                                            <td>{i+1}</td>
-                                            <td>{v.term}</td>
-                                            <td>{v.condition}</td>
-                                            <td style={{
-                                                paddingTop : '20px',
-                                                width : '170px',
-                                                boxSizing:'border-box'
-                                            }}>
-                                                <span className='d-flex ls'>
-                                                    {/* <IconContext.Provider value={{color:'red',size:'21px'}}> */}
-                                                    <label className='me-2 ms-5'  ><MdDelete className='text-danger fs-4' onClick={() => (deletePost(v._id))} /></label>
-                                                    {/* </IconContext.Provider> */}
-                                                    <label>|</label>
-                                                    {/* <IconContext.Provider value={{color:'yellow ',size:'18px'}}> */}
-                                                    <Link  href={`./update-t-c/${v._id}`}><label className='ms-2' ><SlNote className='text-warning fs-5' /></label></Link>
-                                                    {/* </IconContext.Provider> */}
-                                                </span>
-                                            </td>
-                                            <td style={{
-                                                padding : '0px',
-                                                width : '170px',
-                                                boxSizing:'border-box',
-                                                // display:'flex'
-                                            }}>
-                                               <button
+                                    {
+                                        fetchData.map((v, i) => (
+                                            <tr key={v._id}> {/* Added key prop */}
+                                                <td><input type='checkbox' value={v._id} checked={viewId.includes(v._id)} onClick={handelcheck} /></td>
+                                                <td>{i + 1}</td>
+                                                <td>{v.term}</td>
+                                                <td>{v.condition}</td>
+                                                <td style={{ paddingTop: '20px', width: '170px', boxSizing: 'border-box' }}>
+                                                    <span className='d-flex ls'>
+                                                        <label className='me-2 ms-5'><MdDelete className='text-danger fs-4' onClick={() => (deletePost(v._id))} /></label>
+                                                        <label>|</label>
+                                                        <Link href={`./update-t-c/${v._id}`}><label className='ms-2'><SlNote className='text-warning fs-5' /></label></Link>
+                                                    </span>
+                                                </td>
+                                                <td style={{ padding: '0px', width: '170px', boxSizing: 'border-box' }}>
+                                                    <button
                                                         name='status'
                                                         value={v._id}
                                                         onClick={handelStatus}
-                                                        className={`my-3 ms-5 p-2 d-block rounded border-0 
-                                                              ${(v.status == true) ? 'bg-success' : 'bg-secondary'}      text-white`}
+                                                        className={`my-3 ms-5 p-2 d-block rounded border-0 ${(v.status == true) ? 'bg-success' : 'bg-secondary'} text-white`}
                                                     >
-                                                        {
-                                                            (v.status == true) ? "Active" : "Inactive"
-                                                        }
+                                                        {(v.status == true) ? "Active" : "Inactive"}
                                                     </button>
-                                                
-                                                
                                                 </td>
-                                              </tr>
-                                    ))
-                                }
+                                            </tr>
+                                        ))
+                                    }
                                 </tbody>
                             </Table>
                         </div>
                     </div>
                 </Container>
+            </div>
         </div>
-    </div>
-  )
+    )
 }
 
-export default page
+export default Page; // Updated export statement

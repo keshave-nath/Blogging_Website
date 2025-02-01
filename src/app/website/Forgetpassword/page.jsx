@@ -5,39 +5,20 @@ import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react'
 import Swal from 'sweetalert2';
 
-const page = () => {
+const Page = () => { // Renamed from page to Page
   const nav = useRouter();
   const [otp, setotp] = useState(false);
   const [btntext, setbtntext] = useState("Send OTP");
   const [forget, setforget] = useState(false)
   const [isLoading, setIsLoading] = useState(false);
 
-  //  const checkedifloggedin = () => {
-
-  //     let cookiedata = Cookies.get("Blogging_User")
-  //     if (!cookiedata) {
-  //       nav.push("/")
-  //     }
-  //     else {
-  //       cookiedata = JSON.parse(cookiedata);
-  //       console.log(cookiedata)
-  //       //  console.log(cookiedata)
-  //       //  setView(true)
-
-  //     }
-  //   }
-
-
-
   const handlegenerateotp = async (e) => {
     e.preventDefault();
     setIsLoading(true)
-    // console.log(datas)
     try {
       const response = await axios.post(`${process.env.NEXT_PUBLIC_SERVER}/api/blogging-services/user/generate-otp`, {
         email: e.target.email.value
       })
-      // console.log(response)
       if (response.status == 200) {
         Swal.fire({
           title: "Success",
@@ -59,7 +40,6 @@ const page = () => {
             setbtntext("Send OTP")
           }
         }, 1000)
-
       }
       if (response.status != 200) {
         Swal.fire({
@@ -69,7 +49,6 @@ const page = () => {
         })
         setIsLoading(false)
       }
-
     }
     catch (error) {
       console.log(error)
@@ -82,8 +61,6 @@ const page = () => {
     }
   }
 
-
-
   const updatePassword = async (e) => {
     e.preventDefault();
     const newvalues = {
@@ -92,8 +69,6 @@ const page = () => {
       password: e.target.newpassword.value
     }
     setIsLoading(true)
-    // console.log(newvalues)
-    // console.log(newvalues,getAdminData._id)
     try {
       if (!window.confirm("Do you want to update this Password")) return
 
@@ -121,7 +96,6 @@ const page = () => {
           nav.push("/")
         }
       }
-
     }
     catch (error) {
       console.log(error)
@@ -131,39 +105,21 @@ const page = () => {
         text: "Internal Server Error",
         icon: "error"
       })
-
     }
   }
 
-  // useEffect(() => { handleOtp() }, [])
-
   return (
-    <div className='w-100 d-flex back justify-content-center align-items-center'
-      style={{
-        height: '100vh'
-      }}
-    >
-
-      <div className=' px-3 py-2 rounded bg-dark text-white'
-        style={{
-          maxWidth:'90%',
-          boxShadow: '0px 0px 10px 10px black'
-        }}
-      >
-        <span className='text-center mb-2 fw-bold  fs-1 fs-md-5'>
-          Forgot Password ?
-        </span>
+    <div className='w-100 d-flex back justify-content-center align-items-center' style={{ height: '100vh' }}>
+      <div className='px-3 py-2 rounded bg-dark text-white' style={{ maxWidth: '90%', boxShadow: '0px 0px 10px 10px black' }}>
+        <span className='text-center mb-2 fw-bold fs-1 fs-md-5'>Forgot Password ?</span>
         <div>
           {
-            forget == false ?
-              <form onSubmit={handlegenerateotp} >
+            forget == false ? (
+              <form onSubmit={handlegenerateotp}>
                 <div>
-                  <h5>
-                    Enter Your Email !
-                  </h5>
+                  <h5>Enter Your Email !</h5>
                   <input type="email" name="email" placeholder='Enter your Email' className='w-100 p-2 my-2' />
                   <div>
-
                     {isLoading ? (
                       <div className="text-center">
                         <div className="spinner-border text-primary" role="status">
@@ -171,87 +127,50 @@ const page = () => {
                         </div>
                       </div>
                     ) : (
-                      <button type='submit'
-                        // onClick={handlegenerateotp}
-                        className='border-0 bg-primary fw-bold text-white p-2 w-100 rounded my-3'>
+                      <button type='submit' className='border-0 bg-primary fw-bold text-white p-2 w-100 rounded my-3'>
                         Send OTP
                       </button>
                     )}
-
-
                   </div>
-
-
                   <p className='fw-bold text-secondary text-center'>Powered By AK</p>
                 </div>
               </form>
-              :
-              <form onSubmit={updatePassword} >
+            ) : (
+              <form onSubmit={updatePassword}>
                 <div>
-                  <h5>
-                    Enter Your Email !
-                  </h5>
+                  <h5>Enter Your Email !</h5>
                   <input type="email" name="email" placeholder='Enter your Email' className='w-100 p-2 my-2' />
                   <div>
-                    <h5>
-                      Enter OTP
-                    </h5>
-                    <input type="text" name='otp' placeholder='Enter  OTP' className='w-100 p-2 my-2' />
-                    <h5>
-                      Enter Your New Password
-                    </h5>
+                    <h5>Enter OTP</h5>
+                    <input type="text" name='otp' placeholder='Enter OTP' className='w-100 p-2 my-2' />
+                    <h5>Enter Your New Password</h5>
                     <input type="text" name='newpassword' placeholder='Enter Your New Password' className='w-100 p-2 my-2' />
                   </div>
-
-
                   <div className='d-flex'>
-
-                    <button type='button' disabled
-                      style={{
-                        width: '170px'
-                      }}
-                      className='border-0 me-2 bg-secondary p-2 text-white fw-bold rounded my-2'>
+                    <button type='button' disabled style={{ width: '170px' }} className='border-0 me-2 bg-secondary p-2 text-white fw-bold rounded my-2'>
                       {btntext}
                     </button>
-
                     {isLoading ? (
-                      <div className="text-center p-2"
-                      style={{
-                        width: '170px'
-                      }}
-                      >
-                        <div className="spinner-border text-primary"
-                        
-                        role="status">
+                      <div className="text-center p-2" style={{ width: '170px' }}>
+                        <div className="spinner-border text-primary" role="status">
                           <span className="visually-hidden">Loading...</span>
                         </div>
                       </div>
                     ) : (
-                      <button type='submit'
-
-                      style={{
-                        width: '170px'
-                      }}
-                      className='border-0 bg-success p-2 text-white fw-bold rounded my-2'>
-                      SUBMIT
-                    </button>
+                      <button type='submit' style={{ width: '170px' }} className='border-0 bg-success p-2 text-white fw-bold rounded my-2'>
+                        SUBMIT
+                      </button>
                     )}
-
-                    
                   </div>
-
-
-
                   <p className='fw-bold text-secondary text-center'>Powered By AK</p>
                 </div>
               </form>
+            )
           }
-
         </div>
       </div>
-
     </div>
   )
 }
 
-export default page
+export default Page; // Updated export statement

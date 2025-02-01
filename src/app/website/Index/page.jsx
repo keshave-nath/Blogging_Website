@@ -26,7 +26,7 @@ import { ContextAPI } from '@/app/context/Maincontext';
 import { PiVanLight } from 'react-icons/pi';
 import Swal from 'sweetalert2';
 
-const page = () => {
+const Page = () => {
     // let {user} = useContext(ContextAPI)
     
 
@@ -62,7 +62,7 @@ const page = () => {
 
                 {
                     Posts.map((v, i) => (
-                        <section className='w-100 my-2 p-2 rounded shad text-white row' >
+                        <section className='w-100 my-2 p-2 rounded shad text-white row' key={v._id} >
                             <div className='d-flex justify-content-between  align-items-center'>
 
                                 <div className='d-flex  align-items-center gap-3'>
@@ -112,239 +112,6 @@ const page = () => {
                     ))
                 }
 
-
-
-                {/* <section className='w-100 my-2 rounded shad text-white row'>
-                    <div className='d-flex justify-content-between  align-items-center'>
-
-                        <div className='d-flex  align-items-center'>
-
-                            <div>
-                                <Image src={logo} width={100} height={100} alt="" />
-                            </div>
-                            <div>
-                                <h4>Keshave Nath</h4>
-                            </div>
-                        </div>
-                        <h4 className='position-relative'>
-                            <BsThreeDotsVertical onClick={() => setreport(!report)} />
-                            <div className={`${report == true ? '' : 'd-none'} position-absolute end-0 border border-white rounded p-2`}>
-                                <h5>Report</h5>
-                            </div>
-                        </h4>
-                    </div>
-                    <Link href="/website/Detail"
-                        style={{
-                            color: 'black',
-                            textDecoration: 'none'
-                        }}
-                    >
-                        <div className='row text-white'>
-                            <div className='col-12 col-lg-4 p-2'>
-                                <img src="https://live.staticflickr.com/8011/7513365946_ab6c1bf20b_b.jpg" width='100%' height='98%' alt="" />
-                            </div>
-                            <div className='col-12 col-lg-8 p-2 text-center lh-lg'>
-                                <h4 className='my-2 fw-bold'>
-                                    Welcome To  My Website
-
-                                </h4>
-                                <p className='my-4 fw-bold'>
-                                    <q>ONCE A KING ALWAYS A KING</q>
-                                </p>
-                                <p className='my-4 fw-bold'>
-                                    <span><FaLocationDot /></span> Jodhpur , Rajasthan
-                                </p>
-                                <p className='my-4 fw-semibold'
-                                    style={{
-                                        textAlign: 'justify'
-                                    }}
-                                >
-                                    Hey , I am here in jodhpur just to have much fun here i am posting the blog of Ghanta Ghar!!
-                                    Hey , I am here in jodhpur just to have much fun here i am posting the blog of Ghanta Ghar!!
-                                    Hey , I am here in jodhpur just to have much fun here i am posting the blog of Ghanta Ghar!!
-                                    Hey , I am here in jodhpur just to have much fun here i am posting the blog of Ghanta Ghar!!
-                                    Hey , I am here in jodhpur just to have much fun here i am posting the blog of Ghanta Ghar!!
-                                    Hey , I am here in jodhpur just to have much fun here i am posting the blog of Ghanta Ghar!!
-                                    Hey , I am here in jodhpur just to have much fun here i am posting the blog of Ghanta Ghar!!
-                                </p>
-                            </div>
-                        </div>
-                    </Link>
-            </section>
-
-            <section className='w-100 my-2 rounded shad text-white row'>
-                    <div className='d-flex justify-content-between  align-items-center'>
-
-                        <div className='d-flex  align-items-center'>
-
-                            <div>
-                                <Image src={logo} width={100} height={100} alt="" />
-                            </div>
-                            <div>
-                                <h4>Keshave Nath</h4>
-                            </div>
-                        </div>
-                        <h4 className='position-relative'>
-                            <BsThreeDotsVertical onClick={() => setreport(!report)} />
-                            <div className={`${report == true ? '' : 'd-none'} position-absolute end-0 border border-white rounded p-2`}>
-                                <h5>Report</h5>
-                            </div>
-                        </h4>
-                    </div>
-                    <Link href="/website/Detail"
-                        style={{
-                            color: 'black',
-                            textDecoration: 'none'
-                        }}
-                    >
-                        <div className='row text-white'>
-                            <div className='col-12 col-lg-4 p-2'>
-                                <img src="https://live.staticflickr.com/8011/7513365946_ab6c1bf20b_b.jpg" width='100%' height='98%' alt="" />
-                            </div>
-                            <div className='col-12 col-lg-8 p-2 text-center lh-lg'>
-                                <h4 className='my-2 fw-bold'>
-                                    Welcome To  My Website
-
-                                </h4>
-                                <p className='my-4 fw-bold'>
-                                    <q>ONCE A KING ALWAYS A KING</q>
-                                </p>
-                                <p className='my-4 fw-bold'>
-                                    <span><FaLocationDot /></span> Jodhpur , Rajasthan
-                                </p>
-                                <p className='my-4 fw-semibold'
-                                    style={{
-                                        textAlign: 'justify'
-                                    }}
-                                >
-                                    Hey , I am here in jodhpur just to have much fun here i am posting the blog of Ghanta Ghar!!
-                                    Hey , I am here in jodhpur just to have much fun here i am posting the blog of Ghanta Ghar!!
-                                    Hey , I am here in jodhpur just to have much fun here i am posting the blog of Ghanta Ghar!!
-                                    Hey , I am here in jodhpur just to have much fun here i am posting the blog of Ghanta Ghar!!
-                                    Hey , I am here in jodhpur just to have much fun here i am posting the blog of Ghanta Ghar!!
-                                    Hey , I am here in jodhpur just to have much fun here i am posting the blog of Ghanta Ghar!!
-                                    Hey , I am here in jodhpur just to have much fun here i am posting the blog of Ghanta Ghar!!
-                                </p>
-                            </div>
-                        </div>
-                    </Link>
-            </section>
-
-            <section className='w-100 my-2 rounded shad text-white row'>
-                    <div className='d-flex justify-content-between  align-items-center'>
-
-                        <div className='d-flex  align-items-center'>
-
-                            <div>
-                                <Image src={logo} width={100} height={100} alt="" />
-                            </div>
-                            <div>
-                                <h4>Keshave Nath</h4>
-                            </div>
-                        </div>
-                        <h4 className='position-relative'>
-                            <BsThreeDotsVertical onClick={() => setreport(!report)} />
-                            <div className={`${report == true ? '' : 'd-none'} position-absolute end-0 border border-white rounded p-2`}>
-                                <h5>Report</h5>
-                            </div>
-                        </h4>
-                    </div>
-                    <Link href="/website/Detail"
-                        style={{
-                            color: 'black',
-                            textDecoration: 'none'
-                        }}
-                    >
-                        <div className='row text-white'>
-                            <div className='col-12 col-lg-4 p-2'>
-                                <img src="https://live.staticflickr.com/8011/7513365946_ab6c1bf20b_b.jpg" width='100%' height='98%' alt="" />
-                            </div>
-                            <div className='col-12 col-lg-8 p-2 text-center lh-lg'>
-                                <h4 className='my-2 fw-bold'>
-                                    Welcome To  My Website
-
-                                </h4>
-                                <p className='my-4 fw-bold'>
-                                    <q>ONCE A KING ALWAYS A KING</q>
-                                </p>
-                                <p className='my-4 fw-bold'>
-                                    <span><FaLocationDot /></span> Jodhpur , Rajasthan
-                                </p>
-                                <p className='my-4 fw-semibold'
-                                    style={{
-                                        textAlign: 'justify'
-                                    }}
-                                >
-                                    Hey , I am here in jodhpur just to have much fun here i am posting the blog of Ghanta Ghar!!
-                                    Hey , I am here in jodhpur just to have much fun here i am posting the blog of Ghanta Ghar!!
-                                    Hey , I am here in jodhpur just to have much fun here i am posting the blog of Ghanta Ghar!!
-                                    Hey , I am here in jodhpur just to have much fun here i am posting the blog of Ghanta Ghar!!
-                                    Hey , I am here in jodhpur just to have much fun here i am posting the blog of Ghanta Ghar!!
-                                    Hey , I am here in jodhpur just to have much fun here i am posting the blog of Ghanta Ghar!!
-                                    Hey , I am here in jodhpur just to have much fun here i am posting the blog of Ghanta Ghar!!
-                                </p>
-                            </div>
-                        </div>
-                    </Link>
-            </section>
-
-            <section className='w-100 my-2 rounded shad text-white row'>
-                    <div className='d-flex justify-content-between  align-items-center'>
-
-                        <div className='d-flex  align-items-center'>
-
-                            <div>
-                                <Image src={logo} width={100} height={100} alt="" />
-                            </div>
-                            <div>
-                                <h4>Keshave Nath</h4>
-                            </div>
-                        </div>
-                        <h4 className='position-relative'>
-                            <BsThreeDotsVertical onClick={() => setreport(!report)} />
-                            <div className={`${report == true ? '' : 'd-none'} position-absolute end-0 border border-white rounded p-2`}>
-                                <h5>Report</h5>
-                            </div>
-                        </h4>
-                    </div>
-                    <Link href="/website/Detail"
-                        style={{
-                            color: 'black',
-                            textDecoration: 'none'
-                        }}
-                    >
-                        <div className='row text-white'>
-                            <div className='col-12 col-lg-4 p-2'>
-                                <img src="https://live.staticflickr.com/8011/7513365946_ab6c1bf20b_b.jpg" width='100%' height='98%' alt="" />
-                            </div>
-                            <div className='col-12 col-lg-8 p-2 text-center lh-lg'>
-                                <h4 className='my-2 fw-bold'>
-                                    Welcome To  My Website
-
-                                </h4>
-                                <p className='my-4 fw-bold'>
-                                    <q>ONCE A KING ALWAYS A KING</q>
-                                </p>
-                                <p className='my-4 fw-bold'>
-                                    <span><FaLocationDot /></span> Jodhpur , Rajasthan
-                                </p>
-                                <p className='my-4 fw-semibold'
-                                    style={{
-                                        textAlign: 'justify'
-                                    }}
-                                >
-                                    Hey , I am here in jodhpur just to have much fun here i am posting the blog of Ghanta Ghar!!
-                                    Hey , I am here in jodhpur just to have much fun here i am posting the blog of Ghanta Ghar!!
-                                    Hey , I am here in jodhpur just to have much fun here i am posting the blog of Ghanta Ghar!!
-                                    Hey , I am here in jodhpur just to have much fun here i am posting the blog of Ghanta Ghar!!
-                                    Hey , I am here in jodhpur just to have much fun here i am posting the blog of Ghanta Ghar!!
-                                    Hey , I am here in jodhpur just to have much fun here i am posting the blog of Ghanta Ghar!!
-                                    Hey , I am here in jodhpur just to have much fun here i am posting the blog of Ghanta Ghar!!
-                                </p>
-                            </div>
-                        </div>
-                    </Link>
-            </section> */}
             </main>
             <Footer />
         </>
@@ -520,7 +287,7 @@ function MyVerticallyCenteredModal(props) {
                         <div className='scrollC'>
                             {
                                 comment.map((item, index) => (
-                                    <div className='d-flex fs-4 gap-2 my-2 p-2'>
+                                    <div className='d-flex fs-4 gap-2 my-2 p-2' key={item._id} >
                                         <div className='rounded-circle'>
                                             <img src={`${process.env.NEXT_PUBLIC_SERVER}/keshaveBlog-files/users/${item.userrs.profile}`} width={50} height={50} className='rounded-circle' alt='profile' />
                                         </div>
@@ -531,49 +298,6 @@ function MyVerticallyCenteredModal(props) {
                                 ))
                             }
 
-
-                            {/* <div className='d-flex fs-4 gap-2 my-2 p-2'>
-                                <div className='rounded-circle'>
-                                    <Image src={logo} width={50} height={50} className='rounded-circle' />
-                                </div>
-                                <div>
-                                    Comments !
-                                </div>
-                            </div>
-                            <div className='d-flex fs-4 gap-2 my-2 p-2'>
-                                <div className='rounded-circle'>
-                                    <Image src={logo} width={50} height={50} className='rounded-circle' />
-                                </div>
-                                <div>
-                                    Comments !
-                                </div>
-                            </div>
-                            <div className='d-flex fs-4 gap-2 my-2 p-2'>
-                                <div className='rounded-circle'>
-                                    <Image src={logo} width={50} height={50} className='rounded-circle' />
-                                </div>
-                                <div>
-                                    Comments !
-                                </div>
-                            </div>
-
-                            <div className='d-flex fs-4 gap-2 my-2 p-2'>
-                                <div className='rounded-circle'>
-                                    <Image src={logo} width={50} height={50} className='rounded-circle' />
-                                </div>
-                                <div>
-                                    Comments !
-                                </div>
-                            </div>
-
-                            <div className='d-flex fs-4 gap-2 my-2 p-2'>
-                                <div className='rounded-circle'>
-                                    <Image src={logo} width={50} height={50} className='rounded-circle' />
-                                </div>
-                                <div>
-                                    Comments !
-                                </div>
-                            </div> */}
                         </div>
                         <div className='mt-2'>
                             <form onSubmit={addComments} className={` position-relative`}>
@@ -587,11 +311,9 @@ function MyVerticallyCenteredModal(props) {
                     </div>
                 </div>
             </Modal.Body>
-            {/* <Modal.Footer>
-                <Button onClick={props.onHide}>Close</Button>
-            </Modal.Footer> */}
+           
         </Modal>
     );
 }
 
-export default page
+export default Page

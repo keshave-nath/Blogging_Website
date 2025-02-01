@@ -20,7 +20,7 @@ import { TbMessageReport } from 'react-icons/tb'
 import Swal from 'sweetalert2'
 
 
-const page = () => {
+const Page = () => {
 
     const params = useParams();
     const nav = useRouter();
@@ -266,7 +266,7 @@ function MyVerticallyCenteredModal(props) {
                         <div className='scrollC'>
                             {
                                 comment.map((item, index) => (
-                                    <div className='d-flex fs-4 gap-2 my-2 p-2'>
+                                    <div className='d-flex fs-4 gap-2 my-2 p-2' key={item._id} >
                                         <div className='rounded-circle'>
                                             <img src={`${process.env.NEXT_PUBLIC_SERVER}/keshaveBlog-files/users/${item.userrs.profile}`} width={50} height={50} className='rounded-circle' alt='profile' />
                                         </div>
@@ -276,50 +276,6 @@ function MyVerticallyCenteredModal(props) {
                                     </div>
                                 ))
                             }
-
-
-                            {/* <div className='d-flex fs-4 gap-2 my-2 p-2'>
-                                <div className='rounded-circle'>
-                                    <Image src={logo} width={50} height={50} className='rounded-circle' />
-                                </div>
-                                <div>
-                                    Comments !
-                                </div>
-                            </div>
-                            <div className='d-flex fs-4 gap-2 my-2 p-2'>
-                                <div className='rounded-circle'>
-                                    <Image src={logo} width={50} height={50} className='rounded-circle' />
-                                </div>
-                                <div>
-                                    Comments !
-                                </div>
-                            </div>
-                            <div className='d-flex fs-4 gap-2 my-2 p-2'>
-                                <div className='rounded-circle'>
-                                    <Image src={logo} width={50} height={50} className='rounded-circle' />
-                                </div>
-                                <div>
-                                    Comments !
-                                </div>
-                            </div>
-
-                            <div className='d-flex fs-4 gap-2 my-2 p-2'>
-                                <div className='rounded-circle'>
-                                    <Image src={logo} width={50} height={50} className='rounded-circle' />
-                                </div>
-                                <div>
-                                    Comments !
-                                </div>
-                            </div>
-
-                            <div className='d-flex fs-4 gap-2 my-2 p-2'>
-                                <div className='rounded-circle'>
-                                    <Image src={logo} width={50} height={50} className='rounded-circle' />
-                                </div>
-                                <div>
-                                    Comments !
-                                </div>
-                            </div> */}
                         </div>
                         <div className='mt-2'>
                             <form onSubmit={addComments} className={` position-relative`}>
@@ -339,4 +295,4 @@ function MyVerticallyCenteredModal(props) {
         </Modal>
     );
 }
-export default page
+export default Page

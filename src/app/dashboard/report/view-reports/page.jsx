@@ -3,17 +3,17 @@ import React, { useEffect, useState } from 'react'
 import Headers from '../../header/Headers';
 import Link from 'next/link';
 import { Container, Table } from 'react-bootstrap';
-// import { IconContext } from 'react-icons';
 import { SlNote } from "react-icons/sl";
 import { MdDelete } from "react-icons/md";
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import Image from 'next/image'; // Importing Image component
 
-const page = () => {
+const Page = () => { // Renamed from page to Page
     const [reportts, setreportts] = useState([]);
-    const [pat, setpath] = useState([])
+    const [pat, setpath] = useState([]);
     const [viewId, setViewId] = useState([]);
-        const [ifChecked, SetIfChecked] = useState(false);
+    const [ifChecked, SetIfChecked] = useState(false);
 
     const handelviewReports = async () => {
         try {
@@ -56,16 +56,11 @@ const page = () => {
         try {
             const response = await axios.delete(`${process.env.NEXT_PUBLIC_SERVER}/api/admin-panel/reports/delete-reports/${e}`)
             if (response.status == 200) {
-
                 alert("Deleted")
-
                 const indexNo = reportts.findIndex((v) => v._id === e);
                 const newData = [...reportts]
                 newData.splice(indexNo, 1);
-
                 setreportts(newData);
-
-
             }
         }
         catch (error) {
@@ -77,26 +72,24 @@ const page = () => {
         try {
             const response = await axios.delete(`${process.env.NEXT_PUBLIC_SERVER}/api/blogging-services/user-posts/delete-user-post/${e}`)
             if (response.status == 200) {
-
                 Swal.fire({
-                    title:"Success ",
-                    text:"Post Deleted Successfully !",
-                    icon:"success",
+                    title: "Success ",
+                    text: "Post Deleted Successfully !",
+                    icon: "success",
                 })
             }
         }
         catch (error) {
             console.log(error);
             Swal.fire({
-                title:"Oops ",
-                text:"Internal Server Error Try After Sometime !",
-                icon:"error",
+                title: "Oops ",
+                text: "Internal Server Error Try After Sometime !",
+                icon: "error",
             })
         }
     }
 
     const handelmultidelete = async () => {
-
         await Swal.fire({
             title: "Are you sure?",
             text: "You won't be able to revert this!",
@@ -116,14 +109,12 @@ const page = () => {
                         })
                     )
                     const response = axios.post(`${process.env.NEXT_PUBLIC_SERVER}/api/admin-panel/reports/multi-delete-reports`, { ids: viewId }).then((resultt) => {
-                        // console.log(resultt)
                         if (resultt.status == 200) return (
                             Swal.fire({
                                 title: "Success !!",
                                 text: "Data Deleted Successfully !!",
                                 icon: "success"
                             }).then((ress) => (handelviewReports()))
-
                         )
                         if (resultt.status !== 200) return (
                             Swal.fire({
@@ -133,10 +124,6 @@ const page = () => {
                             })
                         )
                     })
-
-
-
-
                 }
                 catch (error) {
                     console.log(error);
@@ -148,56 +135,39 @@ const page = () => {
                 }
             }
         });
-
-
     }
 
     const handelStatus = async (e) => {
         let newvalues = (e.target.textContent == "Active") ? false : true;
         try {
-            // console.log(e.target.textContent)
-            
-           
-                await Swal.fire({
-                    title: "Do you want to Update the status?",
-                    showDenyButton: true,
-                    showCancelButton: true,
-                    confirmButtonText: "Save",
-                    denyButtonText: `Don't save`
-                }).then((result) => {
-                    
-                    /* Read more about isConfirmed, isDenied below */
-                    if(result.isConfirmed){
-                        const response =  axios.post(`${process.env.NEXT_PUBLIC_SERVER}/api/admin-panel/reports/update-reports/${e.target.value}`, { newvalues })
-                        if (response.status == 200){
-                        // alert("Status Updated")
-                        // console.log("result")
+            await Swal.fire({
+                title: "Do you want to Update the status?",
+                showDenyButton: true,
+                showCancelButton: true,
+                confirmButtonText: "Save",
+                denyButtonText: `Don't save`
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    const response = axios.post(`${process.env.NEXT_PUBLIC_SERVER}/api/admin-panel/reports/update-reports/${e.target.value}`, { newvalues })
+                    if (response.status == 200) {
                         let indexNo = reportts.findIndex((v) => v._id === e.target.value)
                         const newData = [...reportts]
                         newData[indexNo].status = newvalues;
-                        // console.log(newData,indexNo)
                         setreportts(newData);
                         Swal.fire("Saved!", "", "success");
-                    
-                        }
-                        // nav.push('./view-terms-conditions');
                     }
-                    else if (result.isDenied) {
-                        Swal.fire("Changes are not saved", "", "info");
-                    }
-                })
-            
-            
+                }
+                else if (result.isDenied) {
+                    Swal.fire("Changes are not saved", "", "info");
+                }
+            })
         }
         catch (error) {
             console.log(error);
         }
     }
 
-    useEffect(() => { handelviewReports();
-        SetIfChecked(viewId.length === reportts.length && reportts.length !== 0)
-     }, [viewId,reportts])
-    // console.log(reportts)
+    useEffect(() => { handelviewReports(); SetIfChecked(viewId.length === reportts.length && reportts.length !== 0) }, [viewId, reportts])
 
     return (
         <div>
@@ -219,12 +189,10 @@ const page = () => {
                             <Table className='text-center ' striped bordered hover variant="dark" >
                                 <thead>
                                     <tr>
-                                    <th style={{
-                                            display: 'flex',
-                                            alignItems: 'center'
-                                        }}><button onClick={handelmultidelete}  className='my-2 ms-2 p-2 d-block rounded border-0 text-white bg-danger'>Delete</button> <input type='checkbox' className='ms-3' style={{
-                                            height: '14px'
-                                        }} checked={ifChecked} onClick={handelSelectAll} /></th>
+                                        <th style={{ display: 'flex', alignItems: 'center' }}>
+                                            <button onClick={handelmultidelete} className='my-2 ms-2 p-2 d-block rounded border-0 text-white bg-danger'>Delete</button>
+                                            <input type='checkbox' className='ms-3' style={{ height: '14px' }} checked={ifChecked} onClick={handelSelectAll} />
+                                        </th>
                                         <th>S.No</th>
                                         <th>Name</th>
                                         <th>Username</th>
@@ -237,52 +205,30 @@ const page = () => {
                                 <tbody>
                                     {
                                         reportts.map((v, i) => (
-                                            <tr >
+                                            <tr key={v._id}> {/* Added key prop */}
                                                 <td><input type='checkbox' value={v._id} checked={viewId.includes(v._id)} onClick={handelcheck} /></td>
                                                 <td>{i + 1}</td>
-                                                <td> {v.name} </td>
-                                                <td> {v.username} </td>
-                                                <td> {v.reportt} </td>
+                                                <td>{v.name}</td>
+                                                <td>{v.username}</td>
+                                                <td>{v.reportt}</td>
                                                 <td>
-                                                    <img src={`${pat}${v.thumbnail}`} width={100} height={100} alt="thumbnail" />
+                                                    <Image src={`${pat}${v.thumbnail}`} width={100} height={100} alt="thumbnail" /> {/* Updated to use Image component */}
                                                 </td>
-                                                <td style={{
-                                                    paddingTop: '20px',
-                                                    width: '170px',
-                                                    boxSizing: 'border-box'
-                                                }}>
-                                                    <span className=' ls'>
-                                                        {/* <IconContext.Provider value={{color:'red',size:'21px'}}> */}
-
-                                                        <label className='me-2 border-bottom p-2 ' onClick={() => deletePost(v._id)}  ><MdDelete className='text-danger fs-4' /> Delete Report </label>
-
-                                                        <label className='me-2 p-2' onClick={() => deleteuserPost(v.reportid)}  ><MdDelete className='text-danger fs-4 me-3'  /> Delete Post </label>
-                                                        {/* </IconContext.Provider> */}
-                                                        {/* <label>|</label> */}
-                                                        {/* <IconContext.Provider value={{color:'yellow ',size:'18px'}}> */}
-                                                        {/* <Link  href={`/dashboard/updatesize/1`}><label className='ms-2' ><SlNote className='text-warning fs-5' /></label></Link> */}
-                                                        {/* </IconContext.Provider> */}
+                                                <td style={{ paddingTop: '20px', width: '170px', boxSizing: 'border-box' }}>
+                                                    <span className='ls'>
+                                                        <label className='me-2 border-bottom p-2' onClick={() => deletePost(v._id)}><MdDelete className='text-danger fs-4' /> Delete Report </label>
+                                                        <label className='me-2 p-2' onClick={() => deleteuserPost(v.reportid)}><MdDelete className='text-danger fs-4 me-3' /> Delete Post </label>
                                                     </span>
                                                 </td>
-                                                <td style={{
-                                                    padding: '0px',
-                                                    width: '170px',
-                                                    boxSizing: 'border-box',
-                                                    // display:'flex'
-                                                }}>
+                                                <td style={{ padding: '0px', width: '170px', boxSizing: 'border-box' }}>
                                                     <button
                                                         name='status'
                                                         value={v._id}
                                                         onClick={handelStatus}
-                                                        className={`my-3 ms-5 p-2 d-block rounded border-0 
-                                                              ${(v.status == true) ? 'bg-success' : 'bg-secondary'}      text-white`}
+                                                        className={`my-3 ms-5 p-2 d-block rounded border-0 ${(v.status == true) ? 'bg-success' : 'bg-secondary'} text-white`}
                                                     >
-                                                        {
-                                                            (v.status == true) ? "Active" : "Inactive"
-                                                        }
+                                                        {(v.status == true) ? "Active" : "Inactive"}
                                                     </button>
-
-
                                                 </td>
                                             </tr>
                                         ))
@@ -297,4 +243,4 @@ const page = () => {
     )
 }
 
-export default page
+export default Page; // Updated export statement

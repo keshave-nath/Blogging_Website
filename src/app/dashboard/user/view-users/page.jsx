@@ -3,18 +3,18 @@ import React, { useEffect, useState } from 'react'
 import Headers from '../../header/Headers';
 import Link from 'next/link';
 import { Container, Table } from 'react-bootstrap';
-// import { IconContext } from 'react-icons';
 import { SlNote } from "react-icons/sl";
 import { MdDelete } from "react-icons/md";
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import Image from 'next/image'; // Importing Image component
 
-const page = () => {
+const Page = () => { // Renamed from page to Page
 
     const [userdata, setdata] = useState([])
     const [userpatdata, setpatdata] = useState([])
-    const [viewId, setViewId] = useState([]);
-    const [ifChecked, SetIfChecked] = useState(false);
+    const [viewId, setViewId] = useState([])
+    const [ifChecked, SetIfChecked] = useState(false)
 
     const viewUser = async () => {
         try {
@@ -23,7 +23,6 @@ const page = () => {
                 setdata(response.data.data)
                 setpatdata(response.data.file_path)
             }
-
         }
         catch (error) {
             console.log(error);
@@ -56,22 +55,15 @@ const page = () => {
         }
     }
 
-
     const HandelAccountDisable = async (e) => {
-        console.log(e.target.value)
-        let newvalues = (e.target.textContent == "Active") ? false : true;;
+        let newvalues = (e.target.textContent == "Active") ? false : true;
         try {
-
-            // window.confirm("Are you Sure You Want to Disable Your Account?")
             if (window.confirm("Are you Sure You Want to Disable Your Account?")) {
                 const response = await axios.post(`${process.env.NEXT_PUBLIC_SERVER}/api/blogging-services/user/user-status/${e.target.value}`, { newvalues })
-                // console.log(response)
                 if (response.status == 200) {
-                    // alert("keshave")
                     let indexNo = userdata.findIndex((v) => v._id === e.target.value)
                     const newData = [...userdata]
                     newData[indexNo].status = newvalues;
-                    // console.log(newData,indexNo)
                     setdata(newData);
                     Swal.fire("Saved!", "", "success");
                     Swal.fire({
@@ -79,7 +71,6 @@ const page = () => {
                         text: "Account Is Disabled Successfully !",
                         icon: 'success'
                     })
-
                 }
                 if (response.status != 200) {
                     Swal.fire({
@@ -97,34 +88,34 @@ const page = () => {
 
     const Handelaccountdelete = async (e) => {
         try {
-            if( window.confirm("Are you Sure You Want to Delete Your Account?")) {
-          const response = await axios.delete(`${process.env.NEXT_PUBLIC_SERVER}/api/blogging-services/user/delete-account/${e.target.value}`);
-          if (response.status == 200) {
-            Swal.fire({
-              title: "Success",
-              text: "Account Is Being Successfully Deleted !",
-              icon: 'success'
-            })
-        }
-          }
-          if (response.status != 200) {
-            Swal.fire({
-              title: "Error",
-              text: "Something went wrong !",
-              icon: 'error'
-            })
-          }
-    
+            if (window.confirm("Are you Sure You Want to Delete Your Account?")) {
+                const response = await axios.delete(`${process.env.NEXT_PUBLIC_SERVER}/api/blogging-services/user/delete-account/${e.target.value}`);
+                if (response.status == 200) {
+                    Swal.fire({
+                        title: "Success",
+                        text: "Account Is Being Successfully Deleted !",
+                        icon: 'success'
+                    })
+                }
+                if (response.status != 200) {
+                    Swal.fire({
+                        title: "Error",
+                        text: "Something went wrong !",
+                        icon: 'error'
+                    })
+                }
+            }
         }
         catch (error) {
-          console.log(error)
+            console.log(error)
         }
-      }
+    }
 
     useEffect(() => {
         viewUser();
         SetIfChecked(viewId.length === userdata.length && userdata.length !== 0)
     }, [viewId, userdata])
+
     return (
         <div>
             <Headers />
@@ -145,12 +136,6 @@ const page = () => {
                             <Table className='text-center ' striped bordered hover variant="dark" >
                                 <thead>
                                     <tr>
-                                        {/* <th style={{
-                                            display: 'flex',
-                                            alignItems: 'center'
-                                        }}><button className='my-2 ms-2 p-2 d-block rounded border-0 text-white bg-danger'>Delete</button> <input type='checkbox' className='ms-3' style={{
-                                            height: '14px'
-                                        }} checked={ifChecked} onClick={handelSelectAll} /></th> */}
                                         <th>S.No</th>
                                         <th>User Image</th>
                                         <th>User Name</th>
@@ -162,50 +147,32 @@ const page = () => {
                                 <tbody>
                                     {
                                         userdata.map((item, index) => (
-                                            <tr >
-                                                {/* <td><input type='checkbox' value={item._id} checked={viewId.includes(item._id)} onClick={handelcheck} /></td> */}
+                                            <tr key={item._id}> {/* Added key prop */}
                                                 <td>{index + 1}</td>
                                                 <td>
-                                                    <img src={`${userpatdata}${item.profile}`} width={100} height={100} alt="User" />
+                                                    <Image src={`${userpatdata}${item.profile}`} width={100} height={100} alt="User" /> {/* Updated to use Image component */}
                                                 </td>
                                                 <td>{item.username}</td>
                                                 <td>{item.email}</td>
-                                                 <td style={{
-                                                    paddingTop: '20px',
-                                                    width: '170px',
-                                                    boxSizing: 'border-box'
-                                                }}>
-                                                    <span className=' ls'>
-                                                        
+                                                <td style={{ paddingTop: '20px', width: '170px', boxSizing: 'border-box' }}>
+                                                    <span className='ls'>
                                                         <button
-                                                        name='accdel'
-                                                        className='me-2 ms-2 d-flex p-2 rounded bg-danger text-white border-0 ' 
-                                                        value={item._id}
-                                                        onClick={Handelaccountdelete}
+                                                            name='accdel'
+                                                            className='me-2 ms-2 d-flex p-2 rounded bg-danger text-white border-0 '
+                                                            value={item._id}
+                                                            onClick={Handelaccountdelete}
                                                         ><MdDelete className='text-white fs-4 me-2 ' /> Delete User </button>
-                                                        
                                                     </span>
-                                                </td> 
-                                                <td style={{
-                                                    padding: '0px',
-                                                    width: '170px',
-                                                    boxSizing: 'border-box',
-                                                    // display:'flex'
-                                                }}>
+                                                </td>
+                                                <td style={{ padding: '0px', width: '170px', boxSizing: 'border-box' }}>
                                                     <button
                                                         name='status'
                                                         value={item._id}
                                                         onClick={HandelAccountDisable}
-                                                        className={`my-3 ms-5 p-2 d-block rounded border-0 
-                                                              ${(item.status == true) ? 'bg-success' : 'bg-secondary'}      text-white`}
+                                                        className={`my-3 ms-5 p-2 d-block rounded border-0 ${(item.status == true) ? 'bg-success' : 'bg-secondary'} text-white`}
                                                     >
-                                                        {
-                                                            (item.status == true) ? "Active" : "Inactive"
-                                                        }
+                                                        {(item.status == true) ? "Active" : "Inactive"}
                                                     </button>
-
-
-
                                                 </td>
                                             </tr>
                                         ))
@@ -220,4 +187,4 @@ const page = () => {
     )
 }
 
-export default page
+export default Page; // Updated export statement

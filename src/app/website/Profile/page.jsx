@@ -11,7 +11,7 @@ import { BsThreeDotsVertical } from 'react-icons/bs'
 import { MdDeleteForever } from 'react-icons/md'
 import Swal from 'sweetalert2'
 
-const page = () => {
+const Page = () => {
 
     // const params = useParams();
 
@@ -131,7 +131,7 @@ const page = () => {
 
                     {
                         fetchpost.map((v, i) => (
-                            <div className='col-4 shadd position-relative rounded '>
+                            <div className='col-4 shadd position-relative rounded ' key={v._id} >
                                 <Link href={`/website/Singlepost/${v._id}`}>
                                     <div className='row p-2'>
                                         <div className='col-12'>
@@ -154,53 +154,4 @@ const page = () => {
         </>
     )
 }
-
-// function HandelDeletee(v){
-//     // console.log(v);
-//     const [del,setdel] =useState(false)
-//     const handelDelete = ()=>{
-//         setdel(!del);
-//     }
-
-//     const deletePost = async (e) => {
-//         try {
-//             const response = await axios.delete(`${process.env.NEXT_PUBLIC_SERVER}/api/blogging-services/user-posts/delete-user-post/${e}`)
-//             if (response.status == 200) {
-
-//                 Swal.fire({
-//                     title:"Success ",
-//                     text:"Post Deleted Successfully !",
-//                     icon:"success",
-//                 })
-
-//                 const indexNo = fetchpost.findIndex((v) => v._id === e);
-//                 const newData = [...fetchpost]
-//                 newData.splice(indexNo, 1);
-
-//                 setfetchpost(newData);
-
-
-//             }
-//         }
-//         catch (error) {
-//             console.log(error);
-//             Swal.fire({
-//                 title:"Oops ",
-//                 text:"Internal Server Error Try After Sometime !",
-//                 icon:"error",
-//             })
-//         }
-//     }
-//     return(
-//         <div className='position-absolute top-0 end-0' >
-//                                      <BsThreeDotsVertical className=' fs-3' onClick={handelDelete} />
-//                                      <div className='position-absolute ms-1 fw-bold '>
-//                                         <div className={del==false ?'d-none':'d-flex p-1 border border-2 rounded bg-black'} style={{cursor:'pointer'}} onClick={()=>(deletePost(v.v))} >
-//                                             <MdDeleteForever className='fs-4 text-danger' /> <p>Delete</p>
-//                                         </div>
-//                                      </div>
-//                                 </div>
-//     )
-// }
-
-export default page
+export default Page

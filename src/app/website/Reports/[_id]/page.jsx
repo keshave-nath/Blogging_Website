@@ -6,7 +6,7 @@ import Cookies from 'js-cookie';
 import { useParams, useRouter } from 'next/navigation';
 import Swal from 'sweetalert2';
 
-const page = () => {
+const Page = () => {
   const nav = useRouter();
   const params = useParams();
  const [ imgPres, setImgPres ] = useState({});
@@ -176,4 +176,4 @@ const handelLocation=()=>{
  }
  
 
-export default page
+export default Page

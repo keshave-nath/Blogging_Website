@@ -21,7 +21,8 @@ import axios from 'axios';
 // import { ToastContainer, toast } from 'react-toastify';
 //   import 'react-toastify/dist/ReactToastify.css';
 
-const page = () => {
+const ProfilePage = () => {
+
     const nav = useRouter()
 
     const [getAdminData, SetAdminData] = useState({})

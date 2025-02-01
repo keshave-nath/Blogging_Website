@@ -4,7 +4,7 @@ import Header from '../component/Header'
 import Footer from '../component/Footer'
 import axios from 'axios'
 
-const page = () => {
+const Page = () => {
 
     const [fetchData, setfetchData] = useState([])
     const fetchTerms = async () => {
@@ -36,7 +36,7 @@ console.log(fetchData)
                     </h1>
                     :
                     fetchData.map((item, index) => (
-                        <div className='border-bottom my-5 p-2'>
+                        <div className='border-bottom my-5 p-2' key={item._id} >
                     <b className='fs-4'>{item.term} : </b>
                     <p className='my-2 text-secondary'>{item.condition}</p>
                 </div>
@@ -49,4 +49,4 @@ console.log(fetchData)
     )
 }
 
-export default page
+export default Page

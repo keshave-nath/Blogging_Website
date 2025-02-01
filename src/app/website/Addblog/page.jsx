@@ -1,13 +1,13 @@
 'use client'
-import { ContextAPI } from '@/app/context/Maincontext';
+import { ContextAPI } from '../../context/Maincontext'; // Corrected relative path
 import axios from 'axios';
 import React, { useContext, useState } from 'react'
 import Header from '../component/Header';
 import Swal from 'sweetalert2';
 import { useRouter } from 'next/navigation';
-// import Header from '../component/Header'
+import Image from 'next/image'; // Importing Image component
 
-const page = () => {
+const Page = () => { // Renamed from page to Page
 
   const nav = useRouter();
   const [imgPres, setImgPres] = useState({});
@@ -19,7 +19,6 @@ const page = () => {
     const fieldname = e.target.name;
 
     const reader = new FileReader();
-
     const file = e.target.files[0];
 
     if (file) {
@@ -27,17 +26,12 @@ const page = () => {
     }
 
     reader.onload = () => {
-      // setImgPres({...imgPres,fieldname: reader.result })
-
       setImgPres((prevState) => ({ ...prevState, [fieldname]: reader.result }));
-      // SetAdminData((prevState)=>({...prevState, [fieldname]:reader.result}));
     }
-
   };
 
   const handeladdPost = async (e) => {
     e.preventDefault();
-    // const datas = e.target;
     const data = new FormData(e.target);
     data.append('userr', (Userr));
     try {
@@ -52,13 +46,12 @@ const page = () => {
       if (response.status == 200) {
         Swal.fire({
           title: "Success",
-          text: "Blog Added Successfull",
+          text: "Blog Added Successfully",
           icon: "success"
-        }).then((res)=>(
+        }).then((res) => (
           nav.push('/website/Index')
         ))
       }
-      // console.log(e.target)
     }
     catch (error) {
       console.log(error);
@@ -69,55 +62,30 @@ const page = () => {
       })
     }
   }
-  // console.log(user)
 
   return (
     <>
       <Header />
-      <div className='w-100 py-4 d-flex justify-content-center align-items-center backk'
-        style={{
-          // height:'100vh'
-        }}
-      >
-        <div className='container col-12 col-lg-6 mb-1 p-5 rounded'
-          style={{
-            boxShadow: '0px 0px 10px 8px white'
-          }}
-        >
+      <div className='w-100 py-4 d-flex justify-content-center align-items-center backk'>
+        <div className='container col-12 col-lg-6 mb-1 p-5 rounded' style={{ boxShadow: '0px 0px 10px 8px white' }}>
           <div>
             <h1 className='text-center text-white'>ADD YOUR BLOG !!</h1>
           </div>
           <form onSubmit={handeladdPost} >
-            <label htmlFor="" className='fw-bold fs-4 text-white'>
-              IMAGE :
-            </label>
+            <label htmlFor="" className='fw-bold fs-4 text-white'>IMAGE :</label>
             <div className='w-50 text-white my-3 '>
-              <img src={imgPres.thumbnail} alt="Thumbnail " className='p-1' width='100%' />
+              <Image src={imgPres.thumbnail} alt="Thumbnail" className='p-1' width={100} height={100} /> {/* Updated to use Image component */}
             </div>
             <input type="file" name='thumbnail' onChange={handleFileSelect} placeholder='Enter Your Title' className='d-block w-100 bg-white text-black rounded border-0 my-3 p-1' />
-            <label htmlFor="" className='fw-bold fs-4 text-white'>
-              TITLE :
-            </label>
+            <label htmlFor="" className='fw-bold fs-4 text-white'>TITLE :</label>
             <input type="text" name='title' placeholder='Enter Your Title' className='d-block w-100 rounded border-0 my-3 p-1' />
-
-            <label htmlFor="" className='fw-bold fs-4 text-white'>
-              CAUTION :
-            </label>
+            <label htmlFor="" className='fw-bold fs-4 text-white'>CAUTION :</label>
             <input type="text" name='caution' placeholder='Enter The Caution' className='d-block w-100 rounded border-0 my-3 p-1' />
-
-            <label htmlFor="" className='fw-bold fs-4 text-white'>
-              LOCATION :
-            </label>
+            <label htmlFor="" className='fw-bold fs-4 text-white'>LOCATION :</label>
             <input type="text" name='location' placeholder='Enter Your Location' className='d-block w-100 rounded border-0 my-3 p-1' />
-
-            <label htmlFor="" className='fw-bold fs-4 text-white'>
-              DETAILS :
-            </label>
-            <textarea name="detail" placeholder='Enter Your Trip Experience' maxLength={630} id="" className='d-block w-100 rounded border-0 my-3 p-1' ></textarea>
-
-            <button className='text-white butt border-0 w-100 p-1 rounded fw-bold fs-3 mt-5'>
-              ADD Your Blog
-            </button>
+            <label htmlFor="" className='fw-bold fs-4 text-white'>DETAILS :</label>
+            <textarea name="detail" placeholder='Enter Your Trip Experience' maxLength={630} className='d-block w-100 rounded border-0 my-3 p-1'></textarea>
+            <button className='text-white butt border-0 w-100 p-1 rounded fw-bold fs-3 mt-5'>ADD Your Blog</button>
           </form>
         </div>
       </div>
@@ -125,4 +93,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page; // Updated export statement
