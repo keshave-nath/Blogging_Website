@@ -59,7 +59,7 @@ const Page = () => { // Renamed from page to Page
     }
 
     useEffect(() => { fetchTerms() }, [])
-    console.log(TermsDet)
+    // console.log(TermsDet)
 
     return (
         <div>

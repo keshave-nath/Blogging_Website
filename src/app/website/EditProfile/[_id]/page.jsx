@@ -71,7 +71,7 @@ const Page = () => { // Renamed from page to Page
   };
 
   useEffect(() => { handelUser(); }, [])
-  console.log(UserData)
+  // console.log(UserData)
 
   return (
     <>

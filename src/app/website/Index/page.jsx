@@ -53,7 +53,7 @@ const Page = () => {
 
     useEffect(() => { handelPosts() }, [])
 
-    console.log(Posts)
+    // console.log(Posts)
 
     return (
         <>
@@ -62,7 +62,7 @@ const Page = () => {
 
                 {
                     Posts.map((v, i) => (
-                        <section className='w-100 my-2 p-2 rounded shad text-white row' key={v._id} >
+                        <section className='w-100 my-2 mx-2 p-2 rounded shad text-white row' key={v._id} >
                             <div className='d-flex justify-content-between  align-items-center'>
 
                                 <div className='d-flex  align-items-center gap-3'>

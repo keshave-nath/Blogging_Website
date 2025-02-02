@@ -21,7 +21,7 @@ const Page = () => {
     }
 useEffect(()=>{fetchTerms();},[])
 
-console.log(fetchData)
+// console.log(fetchData)
     return (
         <>
             <Header />
