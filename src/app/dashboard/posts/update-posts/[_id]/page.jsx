@@ -92,7 +92,7 @@ const UpdatePostPage = () => {
                                     IMAGE :
                                 </label>
                                 <div className='w-50 text-white my-3'>
-                                    <img src={(imgPres.length === 0) ? `${Imagepath}/${postDet.admin_post}` : imgPres.admin_post} alt="Thumbnail" className='p-1' width='100px' />
+                                    <img src={(imgPres.length === 0) ? `${postDet.admin_post}` : imgPres.admin_post} alt="Thumbnail" className='p-1' width='100px' />
                                 </div>
                                 <input type="file" name='admin_post' onChange={handleFileSelect} className='d-block w-100 rounded border-2 border-white my-3 p-1' />
                                 <label htmlFor="" className='fw-bold fs-4 text-white'>

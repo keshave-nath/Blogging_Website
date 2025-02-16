@@ -57,7 +57,7 @@ const Page = () => {
     try{
        if( !window.confirm("Do you want to Report this Profile"))return 
     //    console.log(datas)
-        let response = await axios.post(`${process.env.NEXT_PUBLIC_SERVER}/api/admin-panel//reports/add-reports`,datas)
+        let response = await axios.post(`${process.env.NEXT_PUBLIC_SERVER}/api/admin-panel/reports/add-reports`,datas)
         // // console.log(datas,response)
         if(response.status!==200)return(
           Swal.fire({
@@ -138,9 +138,9 @@ const handelLocation=()=>{
                  IMAGE : 
              </label>
              <div className='w-50 text-white my-3 '>
-               <img src={`${pat}${fetchSingle.thumbnail}`} alt="Profile " name='thumbnail' className='p-1' width='100%' />
+               <img src={`${fetchSingle.thumbnail}`} alt="Profile " name='thumbnail' className='p-1' width='100%' />
              </div>
-             <input type="text" name='thumbnail' value={fetchSingle.thumbnail}  placeholder='Enter Your Title' className='d-block w-100 bg-white text-black rounded border-0 my-3 p-1' />
+             <input type="text" name='thumbnail' value={fetchSingle.title}  placeholder='Enter Your Title' className='d-block w-100 bg-white text-black rounded border-0 my-3 p-1' />
              <label htmlFor="" className='fw-bold fs-4 text-white'>
                  Name : 
              </label>

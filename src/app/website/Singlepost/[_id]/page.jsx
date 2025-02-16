@@ -3,8 +3,8 @@ import React, { useContext, useEffect, useState } from 'react'
 // import Header from '../component/Header'
 import Footer from '../../component/Footer'
 import Link from 'next/link'
-import { FaCommentDots, FaLocationDot, FaRegCommentDots, FaRegHeart } from 'react-icons/fa6'
-import { FaShareAlt } from "react-icons/fa";
+import { FaCommentDots, FaLinkedin, FaLocationDot, FaRegCommentDots, FaRegHeart, FaXTwitter } from 'react-icons/fa6'
+import { FaFacebookSquare, FaShareAlt } from "react-icons/fa";
 import logo from '../../../../../public/images/login_logo.png';
 import { BsHeart, BsHeartFill, BsThreeDotsVertical } from 'react-icons/bs'
 import { IoSend } from "react-icons/io5";
@@ -23,8 +23,9 @@ import Swal from 'sweetalert2'
 const Page = () => {
 
     const params = useParams();
+     let { user, setUser } = useContext(ContextAPI)
     const nav = useRouter();
-    // console.log(params)
+    
     const [report, setreport] = useState(false)
     const [like, setlike] = useState(false)
     const [comment, setcomment] = useState(false)
@@ -92,7 +93,8 @@ const Page = () => {
     }
 
     useEffect(() => { fetchuserPost(); }, [])
-    // console.log(prof.profile)
+    // console.log(prof)
+    // console.log(user)
     return (
         <>
             <Header />
@@ -105,7 +107,7 @@ const Page = () => {
                             <div className='d-flex my-2 align-items-center'>
 
                                 <div>
-                                    <img src={`${process.env.NEXT_PUBLIC_SERVER}/keshaveBlog-files/users/${prof.profile}`} className=' rounded-circle profile me-4 ' width={100} height={100} alt="profile" />
+                                    <img src={`${prof.profile}`} className=' rounded-circle profile me-4 ' width={100} height={100} alt="profile" />
                                 </div>
                                 <div>
                                     <h4>{prof.username}</h4>
@@ -123,8 +125,11 @@ const Page = () => {
                                         <TbMessageReport className="fs-4 text-white" />
                                         <h5>Report</h5>
                                     </Link>
+                                    
 
-                                    <div className='d-flex p-1 ' style={{ cursor: 'pointer' }} onClick={() => (deletePost(fetchSingle._id))} >
+                                    <div className={
+                                        prof._id == user._id ? 'd-flex p-1 ': 'd-none'
+                                    } style={{ cursor: 'pointer' }} onClick={() => (deletePost(fetchSingle._id))} >
                                         <h5 className='d-flex'><MdDeleteForever className=' fs-4 text-danger' />Delete</h5>
                                     </div>
                                 </div>
@@ -139,7 +144,7 @@ const Page = () => {
                         >
                             <div className='row text-white'>
                                 <div className='col-12 col-lg-4 p-2'>
-                                    <img src={`${pat}${fetchSingle.thumbnail}`} width='100%' height={350} alt="thumbnail" />
+                                    <img src={`${fetchSingle.thumbnail}`} width='100%' height={350} alt="thumbnail" />
                                 </div>
                                 <div className='col-12 col-lg-8 p-2 text-center lh-lg'>
                                     <h4 className='my-2 fw-bold'>
@@ -177,6 +182,40 @@ function LikeCommentShare(v) {
     const [like, setlike] = useState(false)
     const [comment, setcomment] = useState(false)
     const [modalShow, setModalShow] = React.useState(false);
+    const [share, setshare] = useState(false)
+
+    const handelShare=()=>{
+        setshare(!share)
+    }
+    // console.log(v)
+
+    const handelShareButton = (e)=>{
+        // console.log(e)
+        document.addEventListener('load', function() {
+            // Get the current URL and title of the blog post
+            var currentUrl = window.location.href;  // Gets the current page URL
+            var currentTitle = document.title;      // Gets the current page title
+            // console.log(currentUrl)
+            // Facebook Share button
+            document.getElementById('facebook-share').addEventListener('click', function() {
+              var facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentUrl)}`;
+              window.open(facebookUrl, '_blank', 'width=600,height=400');
+            });
+        
+            // Twitter Share button
+            document.getElementById('twitter-share').addEventListener('click', function() {
+              var twitterUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(currentUrl)}&text=${encodeURIComponent(currentTitle)}`;
+              window.open(twitterUrl, '_blank', 'width=600,height=400');
+            });
+        
+            // LinkedIn Share button
+            document.getElementById('linkedin-share').addEventListener('click', function() {
+              var linkedinUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(currentUrl)}`;
+              window.open(linkedinUrl, '_blank', 'width=600,height=400');
+            });
+          });
+    } 
+
     // console.log(v)
     return (
         <div className='fs-2 d-flex justify-content-center justify-content-md-end gap-5 py-2'>
@@ -199,8 +238,19 @@ function LikeCommentShare(v) {
                     onHide={() => (setModalShow(false), setcomment(false))}
                 />
             </div>
-            <div>
-                <FaShareAlt />
+            <div className='position-relative ' >
+                <FaShareAlt onClick={handelShare} />
+                <div className={` ${share==true?'border border-3 bg-black rounded d-flex gap-3 p-2':'d-none'}`}
+                style={{
+                    position:'absolute',
+                    top:'40px',
+                    right:'-120px',
+                }}
+                >
+                <FaFacebookSquare className='text-white fs-4' id="facebook-share" onClick={handelShareButton} />
+                <FaXTwitter className='text-white fs-4' id="twitter-share" onClick={handelShareButton} />
+                <FaLinkedin className='text-white fs-4' id="linkedin-share" onClick={handelShareButton} />
+                </div>
             </div>
         </div>
     )
@@ -208,6 +258,7 @@ function LikeCommentShare(v) {
 
 function MyVerticallyCenteredModal(props) {
 
+    const params = useParams();
     let { user } = useContext(ContextAPI)
     const [comment, setcomment] = useState([])
     // const [commentprof, setcommentprof] = useState([])
@@ -216,15 +267,15 @@ function MyVerticallyCenteredModal(props) {
         e.preventDefault()
         const data = {
             "userrs": user._id,
+            "posts":props.v._id,
             "comments": e.target.comment.value,
-
         };
         try {
-            const response = await axios.post(`${process.env.NEXT_PUBLIC_SERVER}/api/blogging-services/user-comments/add-user-comments`, data);
-            if (response.status == 200) {
-                e.target.comment.value = " ";
-            }
+            const response = await axios.post(`${process.env.NEXT_PUBLIC_SERVER}/api/blogging-services/user-comments/add-user-comments`, data)
             // console.log(response.data.data)
+            if(response.status==200){
+                e.target.comment.value=" ";
+            }
         }
         catch (error) {
             console.log(error);
@@ -233,7 +284,7 @@ function MyVerticallyCenteredModal(props) {
 
     const viewComments = async () => {
         try {
-            const response = await axios.get(`${process.env.NEXT_PUBLIC_SERVER}/api/blogging-services/user-comments/view-user-comments`)
+            const response = await axios.get(`${process.env.NEXT_PUBLIC_SERVER}/api/blogging-services/user-comments/view-user-comments/${params._id}`)
             setcomment(response.data.data)
             // setcommentprof(response.data.data.userrs)
         }
@@ -243,7 +294,7 @@ function MyVerticallyCenteredModal(props) {
     }
 
     useEffect(() => { viewComments() }, [comment])
-    // console.log(comment)
+    // console.log(props.v)
     return (
         <Modal
             {...props}
@@ -260,7 +311,7 @@ function MyVerticallyCenteredModal(props) {
             <Modal.Body>
                 <div className='row' >
                     <div className='col-6'>
-                        <img src={`${props.p}${props.v.thumbnail}`} width='100%' height={350} alt="thumbnail" />
+                        <img src={`${props.v.thumbnail}`} width='100%' height={350} alt="thumbnail" />
                     </div>
                     <div className='col-6' >
                         <div className='scrollC'>
@@ -268,7 +319,7 @@ function MyVerticallyCenteredModal(props) {
                                 comment.map((item, index) => (
                                     <div className='d-flex fs-4 gap-2 my-2 p-2' key={item._id} >
                                         <div className='rounded-circle'>
-                                            <img src={`${process.env.NEXT_PUBLIC_SERVER}/keshaveBlog-files/users/${item.userrs.profile}`} width={50} height={50} className='rounded-circle' alt='profile' />
+                                            <img src={`${item.userrs.profile}`} width={50} height={50} className='rounded-circle' alt='profile' />
                                         </div>
                                         <div>
                                             {item.comments}
@@ -276,6 +327,7 @@ function MyVerticallyCenteredModal(props) {
                                     </div>
                                 ))
                             }
+
                         </div>
                         <div className='mt-2'>
                             <form onSubmit={addComments} className={` position-relative`}>
@@ -289,9 +341,7 @@ function MyVerticallyCenteredModal(props) {
                     </div>
                 </div>
             </Modal.Body>
-            {/* <Modal.Footer>
-                <Button onClick={props.onHide}>Close</Button>
-            </Modal.Footer> */}
+           
         </Modal>
     );
 }

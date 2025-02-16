@@ -84,7 +84,7 @@ const Page = () => { // Renamed from page to Page
           <form onSubmit={handelUpdateprofile}>
             <label htmlFor="" className='fw-bold fs-4 text-white'>IMAGE :</label>
             <div className='w-50 text-white my-3 '>
-              <img src={imgPres.profile || `${process.env.NEXT_PUBLIC_SERVER}/keshaveBlog-files/users/${UserData.profile}`} alt="Profile " name='profile' className='p-1' width='100%' />
+              <img src={imgPres.profile || `${UserData.profile}`} alt="Profile " name='profile' className='p-1' width='100%' />
             </div>
             <input type="file" name='profile' onChange={handleFileSelect} placeholder='Enter Your Title' className='d-block w-100 bg-white text-black rounded border-0 my-3 p-1' />
             <label htmlFor="" className='fw-bold fs-4 text-white'>Name :</label>

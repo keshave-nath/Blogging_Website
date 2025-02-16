@@ -60,7 +60,7 @@ export default function Headers() {
         <div>
           <div>
             <div className='imgg-r'>
-              <img src={`${process.env.NEXT_PUBLIC_SERVER}/keshaveBlog-files/admin/${profile.map((v) => v.profile)}`} onClick={handlepro} className='w-100' alt='profile' />
+              <img src={`${profile.map((v) => v.profile)}`} onClick={handlepro} className='w-100' alt='profile' />
             </div>
             <div className={`border-start pro ${proo == true ? 'd-block' : 'd-none'} border-end border-bottom my-4 rounded-top`}>
               <div className='bgg fw-bold  py-2 px-3'>

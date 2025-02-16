@@ -207,7 +207,7 @@ const Page = () => {
                                         <label htmlFor="" className='my-2 d-block' >
                                             Profile Picture
                                         </label>
-                                        <img src={imgPres.profilePic ? imgPres.profilePic : `${process.env.NEXT_PUBLIC_SERVER}/keshaveBlog-files/admin/${getAdminData.profile}`} alt="profile" width='100px' height='100px' />
+                                        <img src={imgPres.profile ? imgPres.profile : `${getAdminData.profile}`} alt="profile" width='100px' height='100px' />
                                         <input type="file" className='d-block my-3' name="profile" onChange={handleFileSelect} />
                                     </div>
                                     <div>

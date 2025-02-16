@@ -68,7 +68,7 @@ const Page = () => {
                                 <div className='d-flex  align-items-center gap-3'>
 
                                     <div className='border-0 rounded-circle'>
-                                        <img src={`${process.env.NEXT_PUBLIC_SERVER}/keshaveBlog-files/users/${v.userr.profile}`} width={100} height={100} className='border-0 rounded-circle' alt="profile" />
+                                        <img src={`${v.userr.profile}`} width={100} height={100} className='border-0 rounded-circle' alt="profile" />
                                     </div>
                                     <div>
                                         <h4>{v.userr.username}</h4>
@@ -84,7 +84,7 @@ const Page = () => {
                             >
                                 <div className='row text-white'>
                                     <div className='col-12 col-lg-4 p-2 rounded'>
-                                        <img src={`${paath}${v.thumbnail}`} width='100%' height={400} className='rounded' alt="thumbnail" />
+                                        <img src={`${v.thumbnail}`} width='100%' height={400} className='rounded' alt="thumbnail" />
                                     </div>
                                     <div className='col-12 col-lg-8 p-2 text-center lh-lg'>
                                         <h4 className='my-2 fw-bold'>
@@ -166,7 +166,7 @@ function LikeCommentShare(v) {
             // Get the current URL and title of the blog post
             var currentUrl = window.location.href;  // Gets the current page URL
             var currentTitle = document.title;      // Gets the current page title
-            console.log(currentUrl)
+            // console.log(currentUrl)
             // Facebook Share button
             document.getElementById('facebook-share').addEventListener('click', function() {
               var facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentUrl)}`;
@@ -237,8 +237,8 @@ function MyVerticallyCenteredModal(props) {
         e.preventDefault()
         const data = {
             "userrs": user._id,
+            "posts":props.v._id,
             "comments": e.target.comment.value,
-
         };
         try {
             const response = await axios.post(`${process.env.NEXT_PUBLIC_SERVER}/api/blogging-services/user-comments/add-user-comments`, data)
@@ -254,7 +254,7 @@ function MyVerticallyCenteredModal(props) {
 
     const viewComments = async () => {
         try {
-            const response = await axios.get(`${process.env.NEXT_PUBLIC_SERVER}/api/blogging-services/user-comments/view-user-comments`)
+            const response = await axios.get(`${process.env.NEXT_PUBLIC_SERVER}/api/blogging-services/user-comments/view-user-comments/${props.v._id}`)
             setcomment(response.data.data)
             // setcommentprof(response.data.data.userrs)
         }
@@ -281,7 +281,7 @@ function MyVerticallyCenteredModal(props) {
             <Modal.Body>
                 <div className='row' >
                     <div className='col-6'>
-                        <img src={`${props.p}${props.v.thumbnail}`} width='100%' height={350} alt="thumbnail" />
+                        <img src={`${props.v.thumbnail}`} width='100%' height={350} alt="thumbnail" />
                     </div>
                     <div className='col-6' >
                         <div className='scrollC'>
@@ -289,7 +289,7 @@ function MyVerticallyCenteredModal(props) {
                                 comment.map((item, index) => (
                                     <div className='d-flex fs-4 gap-2 my-2 p-2' key={item._id} >
                                         <div className='rounded-circle'>
-                                            <img src={`${process.env.NEXT_PUBLIC_SERVER}/keshaveBlog-files/users/${item.userrs.profile}`} width={50} height={50} className='rounded-circle' alt='profile' />
+                                            <img src={`${item.userrs.profile}`} width={50} height={50} className='rounded-circle' alt='profile' />
                                         </div>
                                         <div>
                                             {item.comments}

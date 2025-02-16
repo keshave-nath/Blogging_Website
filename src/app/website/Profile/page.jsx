@@ -89,7 +89,7 @@ const Page = () => {
                                 height: '300px'
                             }}
                         >
-                            <img src={`${process.env.NEXT_PUBLIC_SERVER}/keshaveBlog-files/users/${prof.profile}`} className=' rounded-circle profile ' width='100%' height='100%' alt="profile" />
+                            <img src={`${prof.profile}`} className=' rounded-circle profile ' width='100%' height='100%' alt="profile" />
                         </div>
                     </div>
                     <div className='col-12 col-lg-9 lh-lg'>
@@ -135,7 +135,7 @@ const Page = () => {
                                 <Link href={`/website/Singlepost/${v._id}`}>
                                     <div className='row p-2'>
                                         <div className='col-12'>
-                                            <img src={`${pat}${v.thumbnail}`} className='rounded' width='100%' height={350} alt="thumbnail" />
+                                            <img src={`${v.thumbnail}`} className='rounded' width='100%' height={350} alt="thumbnail" />
                                         </div>
 
                                     </div>

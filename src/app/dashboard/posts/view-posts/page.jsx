@@ -185,7 +185,7 @@ const ViewPostsPage = () => {
                                                 <td><input type='checkbox' value={v._id} checked={viewId.includes(v._id)} onClick={handelcheck} /></td>
                                                 <td>{i + 1}</td>
                                                 <td>
-                                                    <img src={`${filepath}/${v.admin_post}`} width={100} height={100} alt='post' />
+                                                    <img src={`${v.admin_post}`} width={100} height={100} alt='post' />
                                                 </td>
                                                 <td>{v.title}</td>
                                                 <td>{v.caution}</td>

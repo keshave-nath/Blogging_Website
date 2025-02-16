@@ -5,7 +5,7 @@ const nextConfig = {
     NEXT_PUBLIC_SERVER: process.env.NEXT_PUBLIC_SERVER,
   },
   images: {
-    domains: ['https://blogging-server-1mfg.onrender.com'],
+    domains: [process.env.NEXT_PUBLIC_SERVER],
   },
 };
 
