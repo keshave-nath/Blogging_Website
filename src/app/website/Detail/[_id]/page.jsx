@@ -41,12 +41,12 @@ const Page = () => { // Renamed from page to Page
             <Header />
             <div className="container my-3">
                 <div className='row'>
-                    <div className='col-3 d-flex justify-content-center align-items-center'>
+                    <div className='col-12 col-lg-3 d-flex justify-content-center align-items-center'>
                         <div className='rounded-circle' style={{ width: '300px', height: '300px' }}>
                             <img src={`${prof.profile}`} className='rounded-circle profile' width='100%' height='100%' alt="profile" /> {/* Updated to use Image component */}
                         </div>
                     </div>
-                    <div className='col-9 lh-lg'>
+                    <div className='col-12 col-lg-9 lh-lg'>
                         <div className='my-3 d-flex justify-content-between'>
                             <h3>{prof.username}</h3>
                             <h3>Total Posts : {fetchpost.length}</h3>
@@ -66,7 +66,7 @@ const Page = () => { // Renamed from page to Page
                 <div className='row my-3'>
                     {
                         fetchpost.map((v, i) => (
-                            <div className='col-4 shadd rounded' key={v._id}> {/* Added key prop */}
+                            <div className='col-12 col-lg-4 shadd rounded' key={v._id}> {/* Added key prop */}
                                 <Link href={`/website/Singlepost/${v._id}`}>
                                     <div className='row p-2 '>
                                         <div className='col-12 rounded'>

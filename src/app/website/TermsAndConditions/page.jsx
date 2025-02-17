@@ -31,7 +31,7 @@ useEffect(()=>{fetchTerms();},[])
                 </h1>
                 {
                     fetchData.length==0?
-                    <h1 className='text-center fs-4 my-5' style={{height:'450px'}} >
+                    <h1 className='text-center fs-4 my-5' style={{maxHeight:'450px'}} >
                         No Terms And Conditions Found
                     </h1>
                     :
