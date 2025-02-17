@@ -22,12 +22,12 @@ import { IoSend } from "react-icons/io5";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import axios from 'axios';
-import { ContextAPI } from '@/app/context/Maincontext';
+import { ContextAPI } from '../../context/Maincontext';
 import { PiVanLight } from 'react-icons/pi';
 import Swal from 'sweetalert2';
 
 const Page = () => {
-    // let {user} = useContext(ContextAPI)
+    let {searchQuery, setSearchQuery} = useContext(ContextAPI)
     
 
     const [Posts, setPosts] = useState([]);
@@ -36,7 +36,7 @@ const Page = () => {
 
     const handelPosts = async () => {
         try {
-            const response = await axios.get(`${process.env.NEXT_PUBLIC_SERVER}/api/blogging-services/user-posts/view-user-post`)
+            const response = await axios.get(`${process.env.NEXT_PUBLIC_SERVER}/api/blogging-services/user-posts/view-user-post/${searchQuery}`)
             if (response.status == 200) {
                 setPosts(response.data.data);
                 setpaath(response.data.file_path)
@@ -51,9 +51,9 @@ const Page = () => {
         }
     }
 
-    useEffect(() => { handelPosts() }, [])
+    useEffect(() => { handelPosts() }, [searchQuery])
 
-    // console.log(Posts)
+    // console.log(searchQuery)
 
     return (
         <>

@@ -22,7 +22,7 @@ const Header = () => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  let { user, setUser } = useContext(ContextAPI)
+  let { user, setUser ,searchQuery, setSearchQuery } = useContext(ContextAPI)
 
   const handlelogout = () => {
     Cookies.remove("Blogging_User")
@@ -136,7 +136,13 @@ const Header = () => {
                   <IoIosLogOut className='text-white fs-3' /><p>Log-out</p>
                 </NavDropdown.Item>
               </NavDropdown>
+              
             </Nav>
+            <Form className="d-flex mt-3">
+              <Form.Control type="search" placeholder="Search" name='search' className="me-2" aria-label="Search"  value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)} />
+              {/* <Button variant="outline-success">Search</Button> */}
+            </Form>
           </Navbar.Collapse>
 
           <Navbar.Offcanvas id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel" placement="start" className="bg-dark text-white d-lg-none">
@@ -176,10 +182,11 @@ const Header = () => {
                 </NavDropdown.Item>
               </NavDropdown>
             </Nav>
-            {/* <Form className="d-flex mt-3">
-              <Form.Control type="search" placeholder="Search" className="me-2" aria-label="Search" />
-              <Button variant="outline-success">Search</Button>
-            </Form> */}
+            <Form className="d-flex mt-3">
+              <Form.Control type="search" placeholder="Search" name='search' className="me-2" aria-label="Search" value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)} />
+              {/* <Button variant="outline-success">Search</Button> */}
+            </Form>
           </Offcanvas.Body>
         </Navbar.Offcanvas>
 
