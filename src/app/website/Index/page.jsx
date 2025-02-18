@@ -11,6 +11,7 @@ import Modal from 'react-bootstrap/Modal';
 import axios from 'axios';
 import { ContextAPI } from '../../context/Maincontext';
 import Swal from 'sweetalert2';
+import Link from 'next/link'
 
 const Page = () => {
     let {searchQuery, setSearchQuery} = useContext(ContextAPI)
