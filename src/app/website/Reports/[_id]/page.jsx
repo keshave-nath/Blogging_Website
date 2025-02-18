@@ -48,7 +48,7 @@ const Page = () => {
     e.preventDefault();
 
     const datas={
-      thumbnail:e.target.thumbnail.value,
+      thumbnail:fetchSingle.thumbnail,
       name:e.target.name.value,
       username:e.target.username.value,
       reportt:e.target.reportt.value,
