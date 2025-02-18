@@ -212,7 +212,7 @@ const Page = () => { // Renamed from page to Page
                                                 <td>{v.username}</td>
                                                 <td>{v.reportt}</td>
                                                 <td>
-                                                    <Image src={`${pat}${v.thumbnail}`} width={100} height={100} alt="thumbnail" /> {/* Updated to use Image component */}
+                                                    <Image src={`${v.thumbnail}`} width={100} height={100} alt="thumbnail" /> {/* Updated to use Image component */}
                                                 </td>
                                                 <td style={{ paddingTop: '20px', width: '170px', boxSizing: 'border-box' }}>
                                                     <span className='ls'>
