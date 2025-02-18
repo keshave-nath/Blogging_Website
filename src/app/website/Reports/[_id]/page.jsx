@@ -131,7 +131,7 @@ const handelLocation=()=>{
          }}
        >
          <div>
-           <h1 className='text-center text-white'>Edit YOUR Profile !!</h1>
+           <h1 className='text-center text-white'>Report !!</h1>
          </div>
          <form onSubmit={handelReports}>
             <label htmlFor="" className='fw-bold fs-4 text-white'>
