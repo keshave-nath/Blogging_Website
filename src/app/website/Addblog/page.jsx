@@ -7,7 +7,7 @@ import Swal from 'sweetalert2';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image'; // Importing Image component
 
-const Page = () => { e
+const Page = () => { 
 
   const nav = useRouter();
   const [imgPres, setImgPres] = useState({});
