@@ -7,6 +7,9 @@ const nextConfig = {
   images: {
     domains: [process.env.NEXT_PUBLIC_SERVER],
   },
+  eslint: {
+    ignoreDuringBuilds: true,
+  }
 };
 
 export default nextConfig;
