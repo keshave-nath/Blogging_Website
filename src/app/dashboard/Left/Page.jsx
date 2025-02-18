@@ -56,7 +56,7 @@ const Page = () => {
                         </ListGroup>
                     </div>
                     <div className=''>
-                        <h5 className='text-center fw-bold text-secondary'>Ecommerce Components</h5>
+                        <h5 className='text-center fw-bold text-secondary'>Blogging Components</h5>
                         <Accordion >
                             <Accordion.Item className='border-0' eventKey="0">
                                 <IconContext.Provider value={{ size: '24px' }}>
