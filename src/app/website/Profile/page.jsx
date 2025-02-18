@@ -13,8 +13,6 @@ import Swal from 'sweetalert2'
 
 const Page = () => {
 
-    // const params = useParams();
-
     let { user, setUser } = useContext(ContextAPI)
     const [pat,setpat]=useState([])
     const [fetchpost, setfetchpost] = useState([])
@@ -70,16 +68,11 @@ const Page = () => {
     
 
     useEffect(() => { fetchuserPost(); handelProfile(); }, [])
-    // console.log("Keshave"+cookieData)
 
     return (
         <>
             <Header />
-            <div className="container my-3"
-            // style={{
-            //     height:'100vh'
-            // }}
-            >
+            <div className="container my-3">
 
                 <div className='row m-2'>
                     <div className='col-12 col-lg-3 d-flex justify-content-center align-items-center'>
@@ -140,7 +133,6 @@ const Page = () => {
 
                                     </div>
                                 </Link>
-                                {/* <HandelDeletee v={v._id}/> */}
                             </div>
                         ))
                     }

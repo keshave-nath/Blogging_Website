@@ -15,7 +15,6 @@ const Page = () => {
  const [fetchSingle, setfetchSingle] = useState([])
     const [pat, setpat] = useState([])
     const [prof,setprof] = useState([])
-    // let prof = []
 
     const fetchuserPost = async () => {
         try {
@@ -26,8 +25,6 @@ const Page = () => {
             if (response.status == 200) {
                 setfetchSingle(response.data.data)
                 setpat(response.data.file_Path)
-                // prof.push(response.data.data.userr)
-                // setprof()
                 setprof(response.data.data.userr)
             }
 
@@ -37,13 +34,6 @@ const Page = () => {
         }
     }
 
-//  const handelUser = ()=>{
-//     const cookiedata= JSON.parse(Cookies.get("Blogging_User"))
-//     if(cookiedata){
-//         SetUserData(cookiedata);
-//     }
-//  }
- 
  const handelReports = async(e)=>{
     e.preventDefault();
 
@@ -56,9 +46,9 @@ const Page = () => {
     }
     try{
        if( !window.confirm("Do you want to Report this Profile"))return 
-    //    console.log(datas)
+
         let response = await axios.post(`${process.env.NEXT_PUBLIC_SERVER}/api/admin-panel/reports/add-reports`,datas)
-        // // console.log(datas,response)
+
         if(response.status!==200)return(
           Swal.fire({
             title:"Oops ",
@@ -72,7 +62,7 @@ const Page = () => {
             text:"Report has been Successfully Submitted !",
             icon:"success",
         }).then((res)=>(
-          // window.location("/website/Index")
+ 
           handelLocation()
         ))
         )
@@ -104,10 +94,7 @@ const handelLocation=()=>{
        }
    
        reader.onload = ()=>{
-         // setImgPres({...imgPres,fieldname: reader.result })
-         
          setImgPres((prevState)=>({...prevState, [fieldname]:reader.result}));
-         // SetAdminData((prevState)=>({...prevState, [fieldname]:reader.result}));
        }
  
    };
@@ -116,14 +103,10 @@ const handelLocation=()=>{
     fetchuserPost();
    },[])
 
-// console.log(fetchSingle)
    return (
     <>
     <Header/>
      <div className='w-100 py-4 d-flex justify-content-center align-items-center backk'
-     style={{
-       // height:'100vh'
-     }}
      >      
        <div className='container col-12 col-lg-6 mb-1 p-5 rounded'
          style={{
@@ -150,16 +133,7 @@ const handelLocation=()=>{
                  Username : 
              </label>
              <input type="text" placeholder='Enter Your Username' name='username' value={prof.username} className='d-block w-100 rounded border-0 my-3 p-1' /> 
-             {/* <label htmlFor="" className='fw-bold fs-4 text-white'>
-                 Bio : 
-             </label>
-             <input type="text" name='bio' placeholder='Enter Bio' className='d-block w-100 rounded border-0 my-3 p-1' /> */}
- 
-             {/* <label htmlFor="" className='fw-bold fs-4 text-white'>
-                 Blogging Type : 
-             </label>
-             <input type="text" name='type' placeholder='Enter Your Location' className='d-block w-100 rounded border-0 my-3 p-1' />  */}
- 
+              
              <label htmlFor="" className='fw-bold fs-4 text-white'>
                 Report : 
              </label>

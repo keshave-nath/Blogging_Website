@@ -2,28 +2,14 @@
 import React, { useContext, useEffect, useState } from 'react'
 import Header from '../component/Header'
 import Footer from '../component/Footer'
-// import { FaLocationDot } from "react-icons/fa6";
-// import { BsThreeDotsVertical } from "react-icons/bs";
-import Link from 'next/link';
-import logo from '../../../../public/images/login_logo.png';
-import Image from 'next/image';
-
-// import React, { useState } from 'react'
-// import Header from '../component/Header'
-// import Footer from '../component/Footer'
-// import Link from 'next/link'
 import { FaCommentDots, FaLinkedin, FaLocationDot, FaRegCommentDots, FaRegHeart, FaXTwitter } from 'react-icons/fa6'
 import { FaFacebookSquare, FaShareAlt } from "react-icons/fa";
 import { TbMessageReport } from "react-icons/tb";
-// import logo from '../../../../public/images/login_logo.png';
 import { BsHeart, BsHeartFill, BsThreeDotsVertical } from 'react-icons/bs'
 import { IoSend } from "react-icons/io5";
-// import Image from 'next/image'
-import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import axios from 'axios';
 import { ContextAPI } from '../../context/Maincontext';
-import { PiVanLight } from 'react-icons/pi';
 import Swal from 'sweetalert2';
 
 const Page = () => {
@@ -40,7 +26,6 @@ const Page = () => {
             if (response.status == 200) {
                 setPosts(response.data.data);
                 setpaath(response.data.file_path)
-                // console.log(response.data.file_path)
             }
             if (response.status != 200) {
                 Swal.fire("Something went wrong", "Please try again", "error");
@@ -52,8 +37,6 @@ const Page = () => {
     }
 
     useEffect(() => { handelPosts() }, [searchQuery])
-
-    // console.log(searchQuery)
 
     return (
         <>
@@ -121,15 +104,6 @@ const Page = () => {
 function Report(v) {
     const [report, setreport] = useState(false)
 
-    // const handelReport = async(e)=>{
-    //     try{
-    //         console.log(e)
-    //     }
-    //     catch(error){
-    //         console.log(error)
-    //     }
-    // }
-
     return (
         <h4 className='position-relative'>
             <BsThreeDotsVertical onClick={() => setreport(!report)} />
@@ -161,12 +135,12 @@ function LikeCommentShare(v) {
     }
 
     const handelShareButton = (e)=>{
-        // console.log(e)
+ 
         document.addEventListener('load', function() {
             // Get the current URL and title of the blog post
             var currentUrl = window.location.href;  // Gets the current page URL
             var currentTitle = document.title;      // Gets the current page title
-            // console.log(currentUrl)
+            
             // Facebook Share button
             document.getElementById('facebook-share').addEventListener('click', function() {
               var facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentUrl)}`;
@@ -187,7 +161,6 @@ function LikeCommentShare(v) {
           });
     } 
 
-    // console.log(v)
     return (
         <div className='fs-2 d-flex justify-content-center justify-content-md-end gap-5 py-2'>
             <div onClick={() => setlike(!like)}>
@@ -231,8 +204,7 @@ function MyVerticallyCenteredModal(props) {
 
     let { user } = useContext(ContextAPI)
     const [comment, setcomment] = useState([])
-    // const [commentprof, setcommentprof] = useState([])
-    // console.log(user)
+
     const addComments = async (e) => {
         e.preventDefault()
         const data = {
@@ -242,7 +214,7 @@ function MyVerticallyCenteredModal(props) {
         };
         try {
             const response = await axios.post(`${process.env.NEXT_PUBLIC_SERVER}/api/blogging-services/user-comments/add-user-comments`, data)
-            // console.log(response.data.data)
+
             if(response.status==200){
                 e.target.comment.value=" ";
             }
@@ -256,7 +228,7 @@ function MyVerticallyCenteredModal(props) {
         try {
             const response = await axios.get(`${process.env.NEXT_PUBLIC_SERVER}/api/blogging-services/user-comments/view-user-comments/${props.v._id}`)
             setcomment(response.data.data)
-            // setcommentprof(response.data.data.userrs)
+
         }
         catch (error) {
             console.log(error)
@@ -264,7 +236,7 @@ function MyVerticallyCenteredModal(props) {
     }
 
     useEffect(() => { viewComments() }, [comment])
-    // console.log(comment)
+
     return (
         <Modal
             {...props}

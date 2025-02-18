@@ -1,5 +1,5 @@
 'use client'
-import { ContextAPI } from '../../context/Maincontext'; // Corrected relative path
+import { ContextAPI } from '../../context/Maincontext'; 
 import axios from 'axios';
 import React, { useContext, useState } from 'react'
 import Header from '../component/Header';
@@ -7,7 +7,7 @@ import Swal from 'sweetalert2';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image'; // Importing Image component
 
-const Page = () => { // Renamed from page to Page
+const Page = () => { e
 
   const nav = useRouter();
   const [imgPres, setImgPres] = useState({});
@@ -74,7 +74,7 @@ const Page = () => { // Renamed from page to Page
           <form onSubmit={handeladdPost} >
             <label htmlFor="" className='fw-bold fs-4 text-white'>IMAGE :</label>
             <div className='w-50 text-white my-3 '>
-              <Image src={imgPres.thumbnail} alt="Thumbnail" className='p-1' width={100} height={100} /> {/* Updated to use Image component */}
+              <Image src={imgPres.thumbnail} alt="Thumbnail" className='p-1' width={100} height={100} />
             </div>
             <input type="file" name='thumbnail' onChange={handleFileSelect} placeholder='Enter Your Title' className='d-block w-100 bg-white text-black rounded border-0 my-3 p-1' />
             <label htmlFor="" className='fw-bold fs-4 text-white'>TITLE :</label>

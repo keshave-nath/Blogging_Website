@@ -7,9 +7,8 @@ import { SlNote } from "react-icons/sl";
 import { MdDelete } from "react-icons/md";
 import axios from 'axios';
 import Swal from 'sweetalert2';
-import Image from 'next/image'; // Importing Image component
 
-const Page = () => { // Renamed from page to Page
+const Page = () => { 
     const [reportts, setreportts] = useState([]);
     const [pat, setpath] = useState([]);
     const [viewId, setViewId] = useState([]);

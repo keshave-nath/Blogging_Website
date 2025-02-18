@@ -3,7 +3,6 @@ import React from 'react'
 import { Accordion } from 'react-bootstrap'
 import Headers from './header/Headers.jsx';
 import Link from 'next/link';
-// import Headers from './header/Headers';
 
 export default function page() {
   return (

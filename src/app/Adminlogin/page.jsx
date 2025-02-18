@@ -31,6 +31,7 @@ const Adminlogin = () => {
     }
     nav.push("/dashboard")
   }
+  
   return (
     <div className='container-fluid d-flex justify-content-center align-items-center '>
       <form action="" onSubmit={handelform}>
